@@ -18,6 +18,8 @@
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet"/>
 
+    <link rel="stylesheet" href="/css/signup.css">
+
 </head>
 
 <body>
@@ -43,7 +45,7 @@
 
 
 
-                      <form class="mx-1 mx-md-4" onsubmit="createNewUser(event)">
+                      <form class="mx-1 mx-md-4" onsubmit="validateForm(this, event)">
 
                         <div class="d-flex flex-row align-items-center mb-4">
 
@@ -51,9 +53,9 @@
 
                           <div class="form-outline flex-fill mb-0">
 
-                            <input type="text" id="form3Example1c" name="userName" class="form-control" />
+                            <input type="text" id="form3Example1c" name="userName" class="form-control" placeholder="Your Name"/>
 
-                            <label class="form-label" id="userName"  for="form3Example1c">Your Name</label>
+                            
 
                           </div>
 
@@ -68,9 +70,7 @@
 
                           <div class="form-outline flex-fill mb-0">
 
-                            <input type="email" id="form3Example3c" name="userEmail" class="form-control" />
-
-                            <label class="form-label" id="userEmail"  for="form3Example3c">Your Email</label>
+                            <input type="email" id="form3Example3c" name="userEmail" class="form-control" placeholder="Your Email"/>
 
                           </div>
 
@@ -85,9 +85,9 @@
 
                           <div class="form-outline flex-fill mb-0">
 
-                            <input type="password" id="form3Example4c" name="userPassword" class="form-control" />
+                            <input type="password" id="form3Example4c" name="userPassword" class="form-control" placeholder="Password"/>
 
-                            <label class="form-label" id="userPassword"  for="form3Example4c">Password</label>
+                           
 
                           </div>
 
@@ -102,14 +102,15 @@
 
                           <div class="form-outline flex-fill mb-0">
 
-                            <input type="password" id="form3Example4cd" name="userPasswordRepeat" class="form-control" />
+                            <input type="password" id="form3Example4cd" name="userPasswordRepeat" class="form-control" placeholder="Confirm password" />
 
-                            <label class="form-label" id="userPasswordRepeat"  for="form3Example4cd">Repeat your password</label>
 
                           </div>
 
                         </div>
-
+                        <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                          <small class="formMessage"></small>
+                        </div>
 
 
 
@@ -120,10 +121,8 @@
                         </div>
 
                         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-
-                            <button type="button" class="btn btn-primary btn-lg">Login</button>
-
-                          </div>
+                          <a href="/user/login" type="button" class="btn btn-primary btn-lg">Already Registered? Login</a>
+                        </div>
 
 
 
@@ -158,9 +157,9 @@
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
     
     <!-- Add this line to import Axios -->
+    
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="./js/signup.js"></script>
-
+<script src="/js/signup.js"></script>
 </body>
 
 </html>
