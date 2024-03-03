@@ -8,13 +8,12 @@ const userRoutes = require('./routes/user');
 const sequelize = require('./database/connection');
 
 app.use(cors());
-app.use(bodyParser.json());
+  
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('views'));
-app.use( userRoutes);
+app.use('/user', userRoutes);
 
 
-sequelize.sync(() => {
-    app.listen(3000);
-});
-
+sequelize.sync();
+app.listen(3000);

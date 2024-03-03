@@ -15,7 +15,7 @@ function createNewUser(event){
     console.log(userDetails);
 
     try {
-        axios.post('http://localhost:3000/signup', userDetails)
+        axios.post('http://localhost:3000/user/signup', userDetails)
         .then( (result) = () => {
             console.log(result)
         })
