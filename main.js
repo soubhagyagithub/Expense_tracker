@@ -31,8 +31,9 @@ app.use('/user', userRoutes);
 app.use('/expense', expenseRoutes);
 app.use(homeRoutes);
 
-Expense.belongsTo(User, {constraints: true, onDelete: 'CASCADE'});
 User.hasMany(Expense);
+Expense.belongsTo(User, {constraints: true, onDelete: 'CASCADE'});
+
 
 sequelize.sync();
 
