@@ -1,4 +1,3 @@
-
 function validateForm(myform, event){
     try{
         event.preventDefault();
@@ -14,19 +13,16 @@ function validateForm(myform, event){
         if(!checkPasswordMatch(myform.userPassword, myform.userPasswordRepeat)){
             return false;
         }
-        if(!checkValidEmail(myform.userEmail)){
+        if(!createUser(myform)){
             return false;
         }
-        saveUser(myform);
     }
     catch(err){
         console.error(err);
     }
-
+    
 }
-
 // Server Requests //
-
 function userCreationSuccess(message){
     try{
         document.querySelector('.formMessage').innerHTML = message;
@@ -36,31 +32,15 @@ function userCreationSuccess(message){
     }
 }
 
-//Check if the email is already registered
-async function checkValidEmail(input){
-    try{
-        const result = await axios.get(`/user/checkUser/${input.value}`)
-                    .then(result => {return result.data})
-        if(result){
-            showError(input, `Email already exists`);
-            return false;
-        }
-    }
-    catch(err){
-        console.error(err);
-    }
-}
-
 //save the user data
-async function saveUser(myform){
+async function createUser(myform){
     try{
         const UserData = {
-            name : myform.userName.value,
-            email : myform.userEmail.value,
-            password : myform.userPassword.value,
+            userName : myform.userName.value,
+            userEmail : myform.userEmail.value,
+            userPassword : myform.userPassword.value,
         }
-        console.log(UserData);
-        await axios.post('/user/signup', UserData)
+        axios.post('/user/signup', UserData)
             .then(result => {
                 userCreationSuccess(result.data)
             })
@@ -72,10 +52,7 @@ async function saveUser(myform){
         console.error(err);
     }
 }
-
-
 // Data Validations //
-
 function showError(input, message) {
     try{
         input.parentElement.className = 'form-outline flex-fill mb-0 form-control error';
@@ -85,7 +62,6 @@ function showError(input, message) {
         console.error(err);
     }
 }
-
 function showSuccess(input){
     try{
         input.parentElement.className = 'form-outline flex-fill mb-0 form-control success';
@@ -95,7 +71,6 @@ function showSuccess(input){
         console.error(err);
     }
 }
-
 function checkEmail(input) {
     try{
         const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -111,7 +86,6 @@ function checkEmail(input) {
         console.error(err);
     }
 }
-
 function checkLengthName(input) {
     try{
         if(input.value.length < 3) {
@@ -129,7 +103,6 @@ function checkLengthName(input) {
         console.error(err);
     }
 }
-
 function checkLengthPass(input) {
     try{
         if(input.value.length < 6) {
@@ -147,7 +120,6 @@ function checkLengthPass(input) {
         console.error(err);
     }
 }
-
 function checkPasswordMatch(input1, input2) {
     try{
         if(input1.value !== input2.value) {
