@@ -7,7 +7,7 @@ const Expense = require('../models/Expense');
 
 exports.getExpenses = async (req, res) => {
 
-    const expenses = await req.user.getExpenses()
+    const expenses = await Expense.findAll()
 
     res.json(expenses);
 
@@ -17,20 +17,27 @@ exports.getExpenses = async (req, res) => {
 
 
 exports.postExpense = async (req, res) => {
+    const { amount, description, category} = req.body;
+
+    if(amount == '' || description == '' || category == ''){
+        res.json({ error: 'Please fill details'});
+    }
     
     await Expense.create({
 
-        amount : req.body.amount,
+        amount : amount,
 
-        description : req.body.description,
+        description : description,
 
-        category : req.body.category
+        category : category,
+
+        userId : req.user.id
 
     })
 
     .then(result => {
 
-        res.json(result);
+        res.status(200).json({expenseCreated: result});
 
     })
 
