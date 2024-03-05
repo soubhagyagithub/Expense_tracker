@@ -23,7 +23,7 @@ const User = sequelize.define('User', {
     jwt : {
         type: Sequelize.STRING,
         allowNul : true
-    },
+    },   
     isPremium : {
         type: Sequelize.BOOLEAN
     }

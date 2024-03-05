@@ -76,7 +76,7 @@ function checkPass(input) {
         if(input.value == undefined || input.value == null || input.value == ''){
             showError(input, 'Password is Empty');
             return false;
-        }else{
+        }else{   
             showSuccess(input);
             return true;
         }
