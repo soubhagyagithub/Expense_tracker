@@ -8,7 +8,7 @@ const Expense = require('../models/Expense');
 exports.getExpenses = async (req, res) => {
     const expenses = await req.user.getExpenses();
     const isPremium = req.user.dataValues.isPremium
-    const data = {
+    const data = {   
         isPremium : isPremium,
         expenses : expenses
     }

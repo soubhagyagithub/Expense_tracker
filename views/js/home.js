@@ -10,7 +10,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     })
     .catch(err => console.log(err));
 });
-
+     
 function checkPremium(isPremium){
     const container = document.querySelector('.premiumSection');
     if(isPremium !== true){
