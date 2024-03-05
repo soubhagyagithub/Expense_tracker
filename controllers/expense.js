@@ -3,7 +3,7 @@ const sequelize = require('../database/connection');
 const Expense = require('../models/Expense');
 
 
-
+    
 
 exports.getExpenses = async (req, res) => {
     const expenses = await req.user.getExpenses();

@@ -6,7 +6,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         arrayOfLists = res.data.expenses;
         arrayOfLists.forEach(list => {
             addExpenseToList(list);
-        })
+        })   
     })
     .catch(err => console.log(err));
 });

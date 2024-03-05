@@ -6,4 +6,4 @@ const purchaseController = require('../controllers/purchase');
 router.get('/premiumSubscription', purchaseController.premiumSubscription);
 router.post('/updateTransactionStatus', purchaseController.updateTransactionStatus);
 
-module.exports = router;
+module.exports = router;    
