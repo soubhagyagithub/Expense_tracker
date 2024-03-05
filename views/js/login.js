@@ -20,7 +20,6 @@ async function authenticateUser(email, password){
         await axios.post('/user/login', {userEmail : email.value, userPassword : password.value})
         .then(result => authenticationSuccess(result.data))
         .catch(err => authenticationSuccess(err.response.data));
-        location.assign('/');
     }
     catch(err){
         console.error(err);
@@ -29,6 +28,9 @@ async function authenticateUser(email, password){
 //authentication Message/Response from Server
 function authenticationSuccess(message){
     try{
+        if(message == 'Account Verified!, Moving to Home Page'){
+            location.href = '/';
+        }
         document.querySelector('.formMessage').innerHTML = message;
     }
     catch(err){
