@@ -81,7 +81,7 @@ function checkPass(input) {
             return true;
         }
     }
-    catch(err){
+    catch(err){     
         console.error(err);
     }
 }

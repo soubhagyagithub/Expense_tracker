@@ -26,7 +26,7 @@ exports.premiumSubscription = (req, res) =>{
         console.log(err);
         res.status(403).json({ message: 'Sometghing went wrong', error: err});
     }
-}   
+}      
 
 exports.updateTransactionStatus = async (req, res ) => {
     try {
