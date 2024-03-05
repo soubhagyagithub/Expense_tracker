@@ -6,11 +6,13 @@ const Expense = require('../models/Expense');
 
 
 exports.getExpenses = async (req, res) => {
-
-    const expenses = await Expense.findAll()
-
-    res.json(expenses);
-
+    const expenses = await req.user.getExpenses();
+    const isPremium = req.user.dataValues.isPremium
+    const data = {
+        isPremium : isPremium,
+        expenses : expenses
+    }
+    res.json(data);
 } 
 
 
