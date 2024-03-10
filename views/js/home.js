@@ -137,7 +137,7 @@ function addExpenseToList(expense){
     deleteButton.innerHTML = "X";
     deleteButton.setAttribute("class", "btn btn-danger btn-sm float-right delete")
     newLi.appendChild(deleteButton);
-    const editButton = document.createElement('button');
+    const editButton = document.createElement('button');       
     editButton.innerHTML = "Edit";
     editButton.setAttribute("class", "btn btn-success btn-sm float-right edit")
     editButton.setAttribute("data-toggle", "modal")
