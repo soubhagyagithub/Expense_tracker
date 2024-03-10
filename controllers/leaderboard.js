@@ -15,7 +15,7 @@ exports.getLeaderboard = async (req, res) => {
             group:['user.id'],
             order:[['total_cost', 'DESC']]
         })
-        res.json(leaderboard);
+        res.json(leaderboard);   
     }
     catch(err){
         console.log(err);
