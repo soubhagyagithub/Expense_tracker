@@ -1,5 +1,4 @@
-// const publicIp='http://localhost:3000';
-const publicIp='http://localhost:3000';
+
 
 
 document.getElementById("signup-form").addEventListener("submit", (e) => {
@@ -21,7 +20,7 @@ document.getElementById("signup-form").addEventListener("submit", (e) => {
 async function addNewUser(name, email, password) {
   try {
     const obj = { name, email, password };
-    const response = await axios.post(`${publicIp}/user/signup`, obj);
+    const response = await axios.post(`http://localhost:3000/user/signup`, obj);
     if (response.status === 201) {
       document.querySelector("#successAlert").innerText = `${response.data.UserAddedResponse}`;
       successAlertAwakeSleep();      
