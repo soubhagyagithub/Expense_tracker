@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const sequelize = require('../database/connection')
 
-const ExpenseTrackerModel = sequelize.define('user_expenses_tbs.amount',{
+const ExpenseTrackerModel = sequelize.define('user_expenses_tbs',{
     id:{
         type: Sequelize.INTEGER,
         autoIncrement: true,
