@@ -1,5 +1,5 @@
-const User = require('../model/usersModel');
-const ForgotModel = require('../model/forgotpasswordModel')
+const User = require('../models/userModels');
+const ForgotModel = require('../models/forgotpasswordModel')
 const bcrypt = require('bcrypt');
 require('dotenv').config();
 const nodemailer = require('nodemailer');
