@@ -15,6 +15,7 @@ const path = require('path')
 const User =require('./models/userModels')
 const Expense =require('./models/expensesModel')
 const Order = require('./models/ordersModel')
+const Forgotpassword = require('./models/forgotpasswordModel');
 
 
 
@@ -23,6 +24,7 @@ const adminRoute = require('./routes/adminRoutes');
 const userRoute = require('./routes/userRoutes');
 const orderRoute = require('./routes/purchaseRoutes');
 const premiumUserRoutes = require('./routes/premiumFeaturesRoutes')
+const PasswordRouter = require('./routes/resetPasswordRoutes')
 
 
 
@@ -46,6 +48,7 @@ app.use(adminRoute);
 app.use(userRoute); 
 app.use(orderRoute); 
 app.use('/premium',premiumUserRoutes)
+app.use('/password',PasswordRouter)
 
 
 
@@ -68,6 +71,8 @@ Expense.belongsTo(User,{Constraints: true, onDelete: "CASCADE"});
 User.hasMany(Order,{foreignKey: 'usersTbId',sourceKey: 'id', onDelete:'CASCADE'})
 Order.belongsTo(User,{Constraints: true, onDelete: "CASCADE"})
 
+User.hasMany(Forgotpassword,{foreignKey: 'usersTbId',sourceKey: 'id', onDelete:'CASCADE'});
+Forgotpassword.belongsTo(User,{Constraints: true, onDelete: "CASCADE"});
 
 
 sequelize.sync()
