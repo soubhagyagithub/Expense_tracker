@@ -1,8 +1,8 @@
 const Expense = require("../models/expensesModel");
 const User = require("../models/userModels");
-// const Downloads = require('../models/downloadedReportsModel')
+const Downloads = require('../models/downloadedReportsModel');
 const sequelize = require("sequelize");
-// const {uploadToS3} = require('../services/awsS3service')
+const {uploadToS3} = require('../services/awsS3service')
 
 
 const getLeadersData = async (req, res) => {
@@ -24,7 +24,7 @@ const getLeadersData = async (req, res) => {
           model: Expense,
           attributes: [],
           required: false,
-        },
+        },    
       ],
       group: ["users_tb.id"],
       order: [[sequelize.literal("aggregate_amount"), "DESC"]],

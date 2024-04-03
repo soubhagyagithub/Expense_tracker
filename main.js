@@ -16,6 +16,7 @@ const User =require('./models/userModels')
 const Expense =require('./models/expensesModel')
 const Order = require('./models/ordersModel')
 const Forgotpassword = require('./models/forgotpasswordModel');
+const Downloads = require('./model/downloadedReportsModel'); 
 
 
 
@@ -25,7 +26,7 @@ const userRoute = require('./routes/userRoutes');
 const orderRoute = require('./routes/purchaseRoutes');
 const premiumUserRoutes = require('./routes/premiumFeaturesRoutes')
 const PasswordRouter = require('./routes/resetPasswordRoutes')
-
+   
 
 
 //log file
