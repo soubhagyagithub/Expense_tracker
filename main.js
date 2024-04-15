@@ -21,7 +21,7 @@ const Downloads = require('./model/downloadedReportsModel');
 
 
 //importing routes
-const adminRoute = require('./routes/adminRoutes');
+const adminRoute = require('./routes/expenseRoute');
 const userRoute = require('./routes/userRoutes');
 const orderRoute = require('./routes/purchaseRoutes');
 const premiumUserRoutes = require('./routes/premiumFeaturesRoutes')
