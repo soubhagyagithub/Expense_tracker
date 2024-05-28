@@ -1,51 +1,40 @@
+const signUp = document.getElementById("signUp");
+const signIn = document.getElementById("signIn");
+const container = document.getElementById("container");
+const signUpBtn = document.getElementById("signUpBtn");
+const loginBtn = document.getElementById("loginBtn");
+const loginEmail = document.getElementById("loginEmail");
+const loginPassword = document.getElementById("loginPassword");
 
-
-
-document.getElementById("login-form").addEventListener("submit", async (e) => {
-  try{
-  e.preventDefault();
-  const email = e.target.email.value;
-  const password = e.target.password.value;
-  if (!email.trim() || !password.trim()) {
-    document.querySelector("#errorAlert").innerText = `All fields are mandatory..!`;
-    alertAwakeSleep();
-    return;
-  }
-  else{
-    const obj={email,password}
-    const response =await axios.post(`http://localhost:3000/user/login`, obj);
-    if (response.status === 200 && response.data.token!=='' && response.data.token!== undefined) {
-      alert(response.data.message);
-      localStorage.setItem('token',response.data.token)
-      window.location.href = "../view/home.html";
-     e.target.email.value = "";
-     e.target.password.value = "";
-    } else {
-      throw new Error("Error in credentials");
-    }
-  }
-}catch (err) {
-  document.querySelector("#errorAlert").innerText = `${err.response.data.message}`;
-  alertAwakeSleep();
-  throw new Error(err);
-} 
+signUp.addEventListener("click", () => {
+  container.classList.add("right-panel-active");
 });
 
+signIn.addEventListener("click", () => {
+  container.classList.remove("right-panel-active");
+});
 
+function login() {
+  const loginDetails = {
+    loginEmail: loginEmail.value,
+    loginPassword: loginPassword.value,
+  };
 
-// function to awake/sleep error alert
-function alertAwakeSleep() {
-  document.querySelector("#errorAlert").classList.toggle("hidden");
-  setTimeout(function () {
-    document.getElementById("errorAlert").classList.toggle("hidden");
-  }, 3000);
+  axios
+    .post("http://localhost:3000/user/login", loginDetails)
+    .then((result) => {
+      alert(result.data.message);
+      localStorage.setItem("token", result.data.token);
+      window.location.href = "/homePage";
+    })
+    .catch((error) => {
+      if (error.response) {
+        const errorMessage = error.response.data.message;
+        alert(errorMessage);
+      } else {
+        alert("An error occurred. Please try again later.");
+      }
+    });
 }
 
-
-// function to awake/sleep success alert
-function successAlertAwakeSleep() {
-  document.querySelector("#successAlert").classList.toggle("hidden");
-  setTimeout(function () {
-    document.getElementById("successAlert").classList.toggle("hidden");
-  }, 3000);
-}
+loginBtn.addEventListener("click", login);

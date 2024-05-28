@@ -1,0 +1,110 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background-color: #effeff;
+  font-family: 'Roboto', sans-serif;
+}
+
+.editDelete {
+  float: right;
+  margin: 3px;
+  padding: 3px 10px;
+}
+#png {
+  margin-right: 10px;
+}
+#form1 {
+  border-radius: 10px;
+  background-color: #3d5a80;
+  box-shadow: 4px 4px 9px #293241;
+  margin: 20px 193px;
+}
+#table {
+  border-radius: 10px;
+  background-color: #d2eaf7;
+  /* background-image: linear-gradient(to bottom right, #c7e9fd, #3d5a80); */
+  box-shadow: 4px 4px 9px #b8b8b8;
+}
+#submitBtn {
+  width: 140px;
+  background-color: #293241;
+  border-color: #293241;
+  color: white;
+}
+
+
+#navigation {
+  background: linear-gradient(45deg, #8fbbea, #6610f2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  font-weight: bold;
+  color: #fff !important;
+  padding-left: 2%;
+}
+
+.nav-link {
+  color: #fff !important;
+}
+
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 0.5%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.topBtn {
+  background-color: #f1eff6;
+  color: rgb(13, 10, 10);
+  border-radius: 50px;
+  
+ 
+
+}
+
+.topBtn:hover {
+  background-color: #007bff;
+}
+
+#categoryBtn {
+  background-color: #293241;
+  width: auto;
+  border-radius: 7px;
+  border: none;
+  color: white;
+}
+#category {
+  width: 300px;
+}
+.input-group-text {
+  background-color: #293241;
+  color: white;
+  border: none;
+}
+#description {
+  width: 2000px;
+}
+
+.trStyle {
+  background-color: transparent;
+}
+#categoryBtn:hover,
+#submitBtn:hover,
+.editDelete:hover {
+  background-color: #ffffff;
+  color: #293241;
+  border-color: #293241;
+}
+.topBtn:hover {
+  background-color: #3d5a80;
+  color: white;
+  border-color: #3d5a80;
+}
+.editDelete {
+  background-color: #293241;
+  border: none;
+}

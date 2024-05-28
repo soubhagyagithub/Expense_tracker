@@ -1,21 +1,18 @@
+const resetPasswordLinkBtn = document.getElementById("resetPasswordLinkBtn");
 
-const publicIp='http://localhost:3000';
-
-async function forget(e){
-  try{
-      e.preventDefault();
-      const email = document.getElementById('email').value;
-    
-    if(!email.trim()){ return alert('Please enter your correct email')}
-    const result = await axios.post(`${publicIp}/password/forgotpassword`, {email})
-    document.getElementById('email').value="";
-    document.body.innerHTML += `<div style="color:green;">${result.data.message}
-    <div>`
-    }
-    catch(err){
-      console.log(err)
-      document.body.innerHTML += '<div style="color:red;">${err} <div>'
-    }
+async function sendMail() {
+  try {
+    const email = document.getElementById("email").value;
+    const res = await axios.post("http://localhost:3000/password/sendMail", {
+      email: email,
+    });
+    alert(res.data.message);
+    window.location.href = "/";
+  } catch (error) {
+    console.log(error);
+    alert(error.response.data.message);
+    window.location.reload();
   }
+}
 
-
+resetPasswordLinkBtn.addEventListener("click", sendMail);

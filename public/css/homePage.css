@@ -1,93 +1,112 @@
-html,
 body {
-  height: 100%;
-  width: 100%;
+  font-family: 'Roboto', sans-serif;
   background-color: #effeff;
 }
-/* 293241 dark
-  3d5a80 blue
-  98c1d9 light
-*/
-.editDelete {
-  float: right;
-  margin: 3px;
-  padding: 3px 10px;
-}
-#png {
-  margin-right: 10px;
-}
-#form1 {
-  border-radius: 10px;
-  background-color: #3d5a80;
-  box-shadow: 4px 4px 9px #293241;
-  margin: 20px 193px;
-}
-#table {
-  border-radius: 10px;
-  background-color: #d2eaf7;
-  /* background-image: linear-gradient(to bottom right, #c7e9fd, #3d5a80); */
-  box-shadow: 4px 4px 9px #b8b8b8;
-}
-#submitBtn {
-  width: 140px;
-  background-color: #293241;
-  border-color: #293241;
-  color: white;
-}
-.topBtn {
-  background-color: white;
-  border-color: white;
-  color: #293241;
-}
+
 #navigation {
-  background-color: #233b64;
+  background: linear-gradient(45deg, #8fbbea, #6610f2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-#categoryBtn {
-  background-color: #293241;
-  width: auto;
-  border-radius: 7px;
-  border: none;
-  color: white;
+
+.navbar-brand {
+  font-weight: bold;
+  color: #e3fd7d !important;
+  padding-left: 2%;
+  font-size: 25px;
 }
-#category {
-  width: 300px;
+
+.nav-link {
+  color: #fff !important;
 }
-.input-group-text {
-  background-color: #293241;
-  color: white;
-  border: none;
+
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.5);
 }
-#description {
-  width: 2000px;
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 0.5%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
-.trStyle {
-  background-color: transparent;
+
+.topBtn {
+  background-color: #f1eff6;
+  color: rgb(13, 10, 10);
+  border-radius: 50px;
+  
+ 
+
 }
-#categoryBtn:hover,
-#submitBtn:hover,
-.editDelete:hover {
-  background-color: #ffffff;
-  color: #293241;
-  border-color: #293241;
-}
+
 .topBtn:hover {
-  background-color: #3d5a80;
-  color: white;
-  border-color: #3d5a80;
+  background-color: #007bff;
 }
-.editDelete {
-  background-color: #293241;
+
+#form1 .input-group-text {
+  background-color: #007bff;
+  color: white;
+}
+
+#form1 .btn-outline-secondary {
+  color: #007bff;
+  border-color: #007bff;
+}
+#form-Container{
+  background-color: rgb(225, 241, 246);
+  height: 30%;
+  border-radius: 8px;
+  padding-top: 20px;
+  margin-bottom: 5%;
+}
+
+
+#form1 .btn-outline-secondary:hover {
+  color: white;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+#form1 .form-control {
+  border-radius: 0.25rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+
+#submitBtn {
+  background: linear-gradient(45deg, #28a745, #588f64);
+  color: white;
+  border-radius: 50px;
+  transition: background 0.3s ease;
+}
+
+#submitBtn:hover {
+  background: linear-gradient(45deg, #218838, #1e7e34);
+}
+
+.table {
+  background-color: rgb(228, 245, 245);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.table thead {
+  background-color: #007bff;
+  color: white;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.pagination .page-item .page-link {
+  color: #007bff;
   border: none;
 }
-#tableHead {
-  background-color: #3d5a80;
-  color: white;
+
+.pagination .page-item .page-link:hover {
+  background-color: #007bff;
+  color: rgb(85, 76, 156);
 }
-.page-link {
-  background-color: #3d5a80;
-  color: white;
-}
-.page-link:hover {
-  background-color: #d2eaf7;
-  color: #233b64;
+
+
+.btn-space {
+  margin-right: 5px;
 }
