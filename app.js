@@ -13,12 +13,21 @@ dotenv.config();
 const cors = require("cors");
 app.use(cors());
 
+const helmet = require("helmet");
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+    crossOriginEmbedderPolicy: false,
+  })
+);
+
 const accessLogStream = fs.createWriteStream(
   path.join(__dirname, "access.log"),
   { flags: "a" }
 );
 
-
+const morgan = require("morgan");
+app.use(morgan("combined", { stream: accessLogStream }));
 
 const sequelize = require("./util/database");
 
