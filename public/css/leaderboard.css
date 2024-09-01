@@ -1,48 +1,19 @@
-html,
 body {
-  height: 100%;
-  width: 100%;
-  background-color: #effeff;
   font-family: 'Roboto', sans-serif;
+  background-color: #e9f5ff;
 }
-
-.editDelete {
-  float: right;
-  margin: 3px;
-  padding: 3px 10px;
-}
-#png {
-  margin-right: 10px;
-}
-#form1 {
-  border-radius: 10px;
-  background-color: #3d5a80;
-  box-shadow: 4px 4px 9px #293241;
-  margin: 20px 193px;
-}
-#table {
-  border-radius: 10px;
-  background-color: #d2eaf7;
-  /* background-image: linear-gradient(to bottom right, #c7e9fd, #3d5a80); */
-  box-shadow: 4px 4px 9px #b8b8b8;
-}
-#submitBtn {
-  width: 140px;
-  background-color: #293241;
-  border-color: #293241;
-  color: white;
-}
-
 
 #navigation {
-  background: linear-gradient(45deg, #8fbbea, #6610f2);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: rgb(80, 80, 80);
+  box-shadow: 0 5px 6px rgba(0, 0, 0, 0.1);
+  margin: 1px 2px 0 2px;
 }
 
 .navbar-brand {
   font-weight: bold;
-  color: #fff !important;
-  padding-left: 2%;
+  color: #e3fd7d !important;
+  padding-left: 1px;
+  font-size: 23.5px;
 }
 
 .nav-link {
@@ -60,51 +31,73 @@ body {
 .topBtn {
   background-color: #f1eff6;
   color: rgb(13, 10, 10);
-  border-radius: 50px;
-  
- 
+  border-radius: 5px;
 
 }
 
 .topBtn:hover {
   background-color: #007bff;
+  color: white
 }
 
-#categoryBtn {
-  background-color: #293241;
-  width: auto;
-  border-radius: 7px;
-  border: none;
-  color: white;
+
+#table {
+  border-radius: 10px;
+  background-color: #8aa0a0;
+  background-image: linear-gradient(to bottom right, #bcd9e8, #68a8d6);
+  box-shadow: 4px 4px 9px #b8b8b8;
 }
-#category {
-  width: 300px;
+
+h2 {
+  color: #292827;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
 }
-.input-group-text {
-  background-color: #293241;
-  color: white;
-  border: none;
-}
-#description {
-  width: 2000px;
+
+table thead th {
+  color: #131617;
+  text-align: center;
+  font-size: 20px;
+
+
+
 }
 
 .trStyle {
   background-color: transparent;
+  color: rgb(19, 18, 18);
+  text-align: center;
+
 }
-#categoryBtn:hover,
-#submitBtn:hover,
-.editDelete:hover {
-  background-color: #ffffff;
-  color: #293241;
-  border-color: #293241;
+
+
+table {
+  border-collapse: collapse;
+
+
+  /* Optional: Table border */
 }
-.topBtn:hover {
-  background-color: #3d5a80;
-  color: white;
-  border-color: #3d5a80;
+
+
+
+.table-row, table tr {
+  border-bottom: none !important;
+  /* Removes row borders */
 }
-.editDelete {
-  background-color: #293241;
-  border: none;
+
+.table th, .table td {
+  border: none !important;
+  /* Removes cell borders if necessary */
+}
+
+.leaderboard-header {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+
+.emoji {
+  font-size: 1.5em;
+  vertical-align: middle;
+
 }

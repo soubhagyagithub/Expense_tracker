@@ -7,12 +7,36 @@ const loginEmail = document.getElementById("loginEmail");
 const loginPassword = document.getElementById("loginPassword");
 
 signUp.addEventListener("click", () => {
-  container.classList.add("right-panel-active");
+  container.classList.add("active");
 });
 
 signIn.addEventListener("click", () => {
-  container.classList.remove("right-panel-active");
+  container.classList.remove("active");
 });
+
+function userSignUp(event) {
+  event.preventDefault();
+  const signUpDetails = {
+    userName: event.target.name.value,
+    userEmail: event.target.email.value,
+    userPassword: event.target.password.value,
+  };
+  console.log(signUpDetails);
+  axios
+    .post("http://localhost:3000/user/signUp", signUpDetails)
+    .then((res) => {
+      alert(res.data.message);
+      window.location.href = "/";
+    })
+    .catch((error) => {
+      if (error.response) {
+        const errorMessage = error.response.data.message;
+        alert(errorMessage);
+      } else {
+        alert("An error occurred. Please try again later.");
+      }
+    });
+}
 
 function login() {
   const loginDetails = {
@@ -28,6 +52,7 @@ function login() {
       window.location.href = "/homePage";
     })
     .catch((error) => {
+      console.log(error);
       if (error.response) {
         const errorMessage = error.response.data.message;
         alert(errorMessage);

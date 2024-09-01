@@ -1,0 +1,22 @@
+body {
+    background-color: #95e4bf;
+    color: #343a40;
+    font-family: Arial, sans-serif;
+}
+
+h1.display-1 {
+    font-size: 10rem;
+    font-weight: 700;
+    color: #e43a59;
+}
+
+p.lead {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    color: rgb(21, 18, 18)
+}
+
+a.btn-primary {
+    font-size: 1.25rem;
+    padding: 10px 20px;
+}

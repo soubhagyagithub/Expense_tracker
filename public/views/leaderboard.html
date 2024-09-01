@@ -25,8 +25,8 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark" id="navigation">
       <div class="container-fluid">
-        <a href="/homePage">
-            <img src="/views/expense.png" width="30px" height="30px" id="png" />
+        <a href="/homePage" style="text-decoration: none;">
+         <p style="font-size:35px; height: 35px;">&#128221</p>
         </a>
         <a class="navbar-brand" href="/homePage">Expense Tracker</a>
         <button
@@ -76,17 +76,17 @@
 <!-- LeaderBoard heading -->
 
     <div class="container table-responsive mt-4 p-3 d-flex justify-content-evenly" id="table">
-      <h2 class="">LEADERBOARD &#127942</h2>
+      <h2 class="leaderboard-header">LEADERBOARD &#127942</h2>
       <table class="table table-hover" style="width: 70%">
 
         
         <!-- ------------------------------------------------------------------------- -->
         <!-- table head -->
 
-        <thead class="">
-          <tr class="">
-            <th scope="col" style="width: 40%">Position</th>
-            <th scope="col" style="width: 40%">Name</th>
+        <thead class="table-heading">
+          <tr class="table-row">
+            <th scope="col" style="width: 10% ">Position</th>
+            <th scope="col" style="width: 10%">Name</th>
             <th scope="col" style="width: 10%">Expenses</th>
           </tr>
         </thead>
@@ -95,6 +95,7 @@
           <!-- table body -->
 
         <tbody id="tbodyId">
+          
         </tbody>
       </table>
     </div>

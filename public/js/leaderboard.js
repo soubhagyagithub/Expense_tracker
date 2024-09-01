@@ -13,7 +13,7 @@ categoryItems.forEach((item) => {
 });
 
 async function getLeaderboard() {
-  const res = await axios.get("http://localhost:3000/user/getAllUsers");
+  const res = await axios.get("/user/getAllUsers");
   let position = 1;
   res.data.forEach((user) => {
     let name = user.name;
@@ -26,7 +26,17 @@ async function getLeaderboard() {
 
     let th = document.createElement("th");
     th.setAttribute("scope", "row");
-    th.appendChild(document.createTextNode(position++));
+
+    // Add emojis for top 3 positions
+    if (position === 1) {
+      th.innerHTML = `<span class="emoji">🥇</span> `;
+    } else if (position === 2) {
+      th.innerHTML = `<span class="emoji">🥈</span> `;
+    } else if (position === 3) {
+      th.innerHTML = `<span class="emoji">🥉</span> `;
+    } else {
+      th.textContent = position;
+    }
 
     let td1 = document.createElement("td");
     td1.appendChild(document.createTextNode(name));
@@ -37,9 +47,10 @@ async function getLeaderboard() {
     tr.appendChild(th);
     tr.appendChild(td1);
     tr.appendChild(td2);
+
+    position++;
   });
 }
-
 async function logout() {
   try {
     localStorage.clear();

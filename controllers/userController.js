@@ -28,18 +28,20 @@ const getLoginPage = async (req, res, next) => {
 
 const postUserSignUp = async (req, res, next) => {
   try {
-    const name = req.body.name;
-    const email = req.body.email;
-    const password = req.body.password;
+    const name = req.body.userName;
+    const email = req.body.userEmail;
+    const password = req.body.userPassword;
 
     await User.findOne({ where: { email: email } })
       .then((user) => {
         if (user) {
           res
             .status(409)
-            .send(
-              `<script>alert('This email is already taken. Please choose another one.'); window.location.href='/'</script>`
-            );
+            .json({
+              success: false,
+              message:
+                "This email is already taken. Please choose another one.",
+            });
         } else {
           bcrypt.hash(password, 10, async (err, hash) => {
             await User.create({
@@ -50,9 +52,7 @@ const postUserSignUp = async (req, res, next) => {
           });
           res
             .status(200)
-            .send(
-              `<script>alert('User Created Successfully!'); window.location.href='/'</script>`
-            );
+            .json({ success: true, message: "User Created Succesfully" });
         }
       })
       .catch((err) => console.log(err));

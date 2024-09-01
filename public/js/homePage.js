@@ -56,7 +56,7 @@ async function addExpense() {
     const token = localStorage.getItem("token");
     const res = await axios
       .post(
-        "http://localhost:3000/expense/addExpense",
+        "/expense/addExpense",
         {
           date: dateStr,
           category: categoryValue,
@@ -82,10 +82,9 @@ async function getAllExpenses() {
   // e.preventDefault();
   try {
     const token = localStorage.getItem("token");
-    const res = await axios.get(
-      "http://localhost:3000/expense/getAllExpenses/1",
-      { headers: { Authorization: token } }
-    );
+    const res = await axios.get("/expense/getAllExpenses/1", {
+      headers: { Authorization: token },
+    });
     res.data.expenses.forEach((expenses) => {
       const id = expenses.id;
       const date = expenses.date;
@@ -128,7 +127,7 @@ async function getAllExpenses() {
 
       let editBtn = document.createElement("button");
       editBtn.className = "editDelete btn btn-success edit";
-      
+
       editBtn.appendChild(document.createTextNode("Edit"));
 
       td4.appendChild(deleteBtn);
@@ -163,10 +162,9 @@ async function paginationBtn(e) {
   try {
     const pageNo = e.target.textContent;
     const token = localStorage.getItem("token");
-    const res = await axios.get(
-      `http://localhost:3000/expense/getAllExpenses/${pageNo}`,
-      { headers: { Authorization: token } }
-    );
+    const res = await axios.get(`/getAllExpenses/${pageNo}`, {
+      headers: { Authorization: token },
+    });
 
     table.innerHTML = "";
 
@@ -233,10 +231,9 @@ async function deleteExpense(e) {
     if (e.target.classList.contains("delete")) {
       let tr = e.target.parentElement.parentElement;
       let id = tr.children[0].textContent;
-      const res = await axios.get(
-        `http://localhost:3000/expense/deleteExpense/${id}`,
-        { headers: { Authorization: token } }
-      );
+      const res = await axios.get(`/expense/deleteExpense/${id}`, {
+        headers: { Authorization: token },
+      });
       window.location.reload();
     }
   } catch {
@@ -255,10 +252,9 @@ async function editExpense(e) {
       let tr = e.target.parentElement.parentElement;
       let id = tr.children[0].textContent;
       //Fill the input values with the existing values
-      const res = await axios.get(
-        "http://localhost:3000/expense/getAllExpenses",
-        { headers: { Authorization: token } }
-      );
+      const res = await axios.get("/expense/getAllExpenses", {
+        headers: { Authorization: token },
+      });
       res.data.forEach((expense) => {
         if (expense.id == id) {
           categoryValue.textContent = expense.category;
@@ -273,7 +269,7 @@ async function editExpense(e) {
             e.preventDefault();
             console.log("request to backend for edit");
             const res = await axios.post(
-              `http://localhost:3000/expense/editExpense/${id}`,
+              `/expense/editExpense/${id}`,
               {
                 category: categoryValue.textContent.trim(),
                 description: descriptionValue.value,
@@ -293,17 +289,16 @@ async function editExpense(e) {
 
 async function buyPremium(e) {
   const token = localStorage.getItem("token");
-  const res = await axios.get(
-    "http://localhost:3000/purchase/premiumMembership",
-    { headers: { Authorization: token } }
-  );
+  const res = await axios.get("/purchase/premiumMembership", {
+    headers: { Authorization: token },
+  });
   var options = {
     key: res.data.key_id, // Enter the Key ID generated from the Dashboard
     order_id: res.data.order.id, // For one time payment
     // This handler function will handle the success payment
     handler: async function (response) {
       const res = await axios.post(
-        "http://localhost:3000/purchase/updateTransactionStatus",
+        "/purchase/updateTransactionStatus",
         {
           order_id: options.order_id,
           payment_id: response.razorpay_payment_id,
@@ -326,7 +321,7 @@ async function buyPremium(e) {
 
 async function isPremiumUser() {
   const token = localStorage.getItem("token");
-  const res = await axios.get("http://localhost:3000/user/isPremiumUser", {
+  const res = await axios.get("/user/isPremiumUser", {
     headers: { Authorization: token },
   });
   if (res.data.isPremiumUser) {

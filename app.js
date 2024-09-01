@@ -5,21 +5,11 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const fs = require("fs");
 
-
-
-const dotenv = require("dotenv");
-dotenv.config();
-
 const cors = require("cors");
 app.use(cors());
 
-const helmet = require("helmet");
-app.use(
-  helmet({
-    contentSecurityPolicy: false,
-    crossOriginEmbedderPolicy: false,
-  })
-);
+const dotenv = require("dotenv");
+dotenv.config();
 
 const accessLogStream = fs.createWriteStream(
   path.join(__dirname, "access.log"),
@@ -60,6 +50,11 @@ app.use("/premium", leaderboardRouter);
 app.use("/password", resetPasswordRouter);
 
 app.use("/reports", reportsRouter);
+
+//if non of these routes matches show the Error page
+app.use((req, res, next) => {
+  res.status(404).sendFile(path.join(__dirname, "public", "views", "404.html"));
+});
 
 User.hasMany(Expense);
 Expense.belongsTo(User);
