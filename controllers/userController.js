@@ -4,14 +4,16 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const sequelize = require("../util/database");
 
-function generateAccessToken(id, email) {
-  return jwt.sign({ userId: id, email: email }, process.env.TOKEN);
+function generateAccessToken(id, email,name) {
+  return jwt.sign({ userId: id, email: email, name: name }, process.env.TOKEN);
 }
 
 const isPremiumUser = async (req, res, next) => {
   try {
     if (req.user.isPremiumUser) {
       return res.json({ isPremiumUser: true });
+    } else {
+      return res.json({ isPremiumUser: false});
     }
   } catch (error) {
     console.log(error);
@@ -28,9 +30,9 @@ const getLoginPage = async (req, res, next) => {
 
 const postUserSignUp = async (req, res, next) => {
   try {
-    const name = req.body.userName;
-    const email = req.body.userEmail;
-    const password = req.body.userPassword;
+    const name = req.body.name;
+    const email = req.body.email;
+    const password = req.body.password;
 
     await User.findOne({ where: { email: email } })
       .then((user) => {
@@ -63,8 +65,8 @@ const postUserSignUp = async (req, res, next) => {
 
 const postUserLogin = async (req, res, next) => {
   try {
-    const email = req.body.loginEmail;
-    const password = req.body.loginPassword;
+    const email = req.body.email;
+    const password = req.body.password;
 
     await User.findOne({ where: { email: email } }).then((user) => {
       if (user) {
@@ -78,7 +80,7 @@ const postUserLogin = async (req, res, next) => {
             return res.status(200).json({
               success: true,
               message: "Login Successful!",
-              token: generateAccessToken(user.id, user.email),
+              token: generateAccessToken(user.id, user.email, user.name),
             });
           } else {
             return res.status(401).json({
@@ -99,25 +101,7 @@ const postUserLogin = async (req, res, next) => {
   }
 };
 
-const getAllUsers = async (req, res, next) => {
-  try {
-    User.findAll({
-      attributes: [
-        [sequelize.col("name"), "name"],
-        [sequelize.col("totalExpenses"), "totalExpenses"],
-      ],
-      order: [[sequelize.col("totalExpenses"), "DESC"]],
-    }).then((users) => {
-      const result = users.map((user) => ({
-        name: user.getDataValue("name"),
-        totalExpenses: user.getDataValue("totalExpenses"),
-      }));
-      res.send(JSON.stringify(result));
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
+
 
 module.exports = {
   generateAccessToken,
@@ -125,5 +109,5 @@ module.exports = {
   postUserLogin,
   postUserSignUp,
   isPremiumUser,
-  getAllUsers,
+  
 };

@@ -6,7 +6,7 @@ const path = require("path");
 const fs = require("fs");
 
 const cors = require("cors");
-app.use(cors());
+app.use(cors())
 
 const dotenv = require("dotenv");
 dotenv.config();
@@ -45,7 +45,7 @@ app.use("/expense", expenseRouter);
 
 app.use("/purchase", purchaseMembershipRouter);
 
-app.use("/premium", leaderboardRouter);
+app.use("/leaderboard", leaderboardRouter);
 
 app.use("/password", resetPasswordRouter);
 
@@ -66,7 +66,7 @@ ResetPassword.belongsTo(User);
 User.hasMany(ResetPassword);
 
 sequelize
-  .sync()
+  .sync({force:false})
   .then((result) => {
     app.listen(process.env.PORT || 3005);
   })
