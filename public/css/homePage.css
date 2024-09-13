@@ -1,149 +1,125 @@
-body {
-  font-family: 'Roboto', sans-serif;
-  background-color: #e9f5ff;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-#navigation {
-  background-color: rgb(80, 80, 80);
-  box-shadow: 0 5px 6px rgba(0, 0, 0, 0.1);
-  margin: 1px 2px 0 2px;
+body {
+  background-color: #212123;
+  
+}
+
+.navbar {
+  background-color: rgb(69, 80, 103);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 .navbar-brand {
-  font-weight: bold;
-  color: #e3fd7d !important;
-  padding-left: 1px;
-  font-size: 25px;
-}
-
-.nav-link {
-  color: #fff !important;
-}
-
-.navbar-toggler {
-  border-color: rgba(255, 255, 255, 0.5);
-}
-
-.navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 0.5%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-}
-
-.topBtn {
-  background-color: #f1eff6;
-  color: rgb(13, 10, 10);
-  border-radius: 5px;
-}
-
-.topBtn:hover {
-  background-color: #007bff;
   color: white
 }
 
-#form1 .input-group-text {
-  background-color: #007bff;
+.navbar-brand:hover {
   color: white;
 }
 
-.dropdown-menu {
-  max-height: 200px;
-  /* Adjust this value to fit your design */
-  overflow-y: auto;
-  /* Enable vertical scrolling */
+.nav-item {
+  color: whilte;
+  display: flex;
+  font-size: 18px;
 }
 
-#form1 .btn-outline-secondary {
-  color: #007bff;
-  border-color: #007bff;
+.topBtn {
+  font-size: 18px;
+  background-color: rgb(12, 208, 104);
+  color: #FFFFFF;
+  border-radius: 5px;
+  font-weight: 600;
 }
 
-#form-Container {
-  height: 30%;
-  border-radius: 8px;
+.topBtn:hover {
+  background-color: rgb(63, 60, 209);
+  color: rgb(247, 246, 246);
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+
+.expense-heading{
+  text-align: left;
+  padding-top: 80px;
+}
+.leaderboard-heading{
+  text-align: center;
+  padding-top: 80px;
+}
+h3 {
+  color: #E9E8E8;
+
+}
+.scroll-margin-top {
+  scroll-margin-top: 70px; /* Adjust the value as needed */
+}
+
+.form-group {
   padding: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  margin-bottom: 10px;
-
+  color: #E9E8E8;
 }
 
-
-#form1 .btn-outline-secondary:hover {
-  color: white;
-  background-color: #007bff;
-  border-color: #007bff;
-
-
+.btnReport {
+  background-color: #453674;
+  border-color: #453674;
+  color: #E9E8E8;
 }
 
-#form1 .form-control {
-  border-radius: 0.25rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  padding: 5px;
+.btnReport:hover {
+  background-color: #482f92;
+  color: #E9E8E8;
 }
 
-
-#submitBtn {
-  background: linear-gradient(45deg, #28a745, #588f64);
-  color: white;
-  border-radius: 5px;
-  transition: background 0.3s ease;
-}
-
-#submitBtn:hover {
-  background: linear-gradient(45deg, #218838, #1e7e34);
-}
-
-.table {
-  background-color: rgba(252, 255, 255, 0.936);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
+.showExpenses {
+  background-color: #c3e9e9;
+  border-radius: 2px;
 }
 
 .table thead {
-  background-color: #61abfa;
-  color: white;
-  border-color: #d6d8db;
-}
+  background-color: #f3f5f6;
 
-.table-hover tbody tr:hover {
-  background-color: #f1f1f1;
 }
 
 th {
-  text-align: center;
+  color: #0e0d0f;
 }
 
-.trStyle {
-  text-align: center;
+#submitBtn {
+  font-size: 17px;
+}
+.page-link{
+  cursor: pointer;
 }
 
-.table-responsive {
-  padding-top: 20px;
+.premiumBox {
+  height: 100%;    
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#buyPremiumBtn{
+  margin-left: 35%;
+
+}
+.leaderboardColumn table {
+
+  color: #FFFFFF;
+  margin-top: 10px;
+
 }
 
-.editDelete {
-  float: right;
-  margin: 3px;
-  padding: 3px 10px;
-}
+.leaderboardColumn table th,
+.leaderboardColumn table td {
+  border-color: #CD5888;
 
-.pagination .page-item .page-link {
-  color: #007bff;
-  border: none;
-}
-
-.pagination .page-item .page-link:hover {
-  background-color: #61abfa;
-  color: white;
-}
-
-#categoryBtn {
-  background-color: #a3f5a4;
-  color: #181a1b;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
-
-#categoryBtn:hover {
-  color: white;
-  background-color: #007bff;
 }

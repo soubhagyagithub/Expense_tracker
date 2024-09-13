@@ -9,6 +9,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/css/homePage.css" />
+  <link rel="icon" href="/images/favicon.png" type="image/icon type">
 </head>
 
 <body>
@@ -16,7 +17,8 @@
   <nav class="navbar navbar-expand-lg navbar" id="navigation">
     <div class="container-fluid">
       <a href="/homePage">
-        <img src="/images/expenselogo.png" width="40px" height="40px" id="png" />
+        
+        <img src="/images/Expenseicon.png" width="45px" height="45px" id="png" />
       </a>
       <a class="navbar-brand" href="/homePage">Expense Tracker</a>
        <!-- Navbar Toggler Button -->
@@ -32,14 +34,19 @@
           <li class="nav-item">
             <a id="reportsLink" class=" text-white nav-link active" aria-current="page" href="#" onclick="onClickAlert();">Reports &#128081</a>
           </li>
-          
+           
         </ul>
+        <div style="background-color: rgb(67, 67, 67); border-radius: 3px; margin-right: 20px; font-size: 20px; text-align: center; margin-bottom:4px;">
+          <li class="nav-item" id="premiumNavItem" style="display: none; ">
+            <a class="text-white fw-bold nav-link active" href="#">Premium Member👑</a>
+          </li>
+        </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
           <button id="logoutBtn" class="topBtn btn btn-move py-1" type="button">Logout</button> 
         </div>
-      <!-- Profile Dropdown -->
+      <!-- Profile  -->
       <div style="margin-left: 10px;">
-        <a class="d-flex align-items-center text-white text-decoration-none  pl-4" href="#" id="profileDropdown" data-bs-toggle="" aria-expanded="false">
+        <a class="d-flex align-items-center text-white text-decoration-none pl-4" href="#" id="profileDropdown" data-bs-toggle="" aria-expanded="false">
           <img src="/images/profile2.png" alt="Profile" width="40px" height="40px" class="rounded-circle me-2" />
           <span>Username</span>
         </a>
@@ -53,8 +60,8 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col">
-        <h3 style="text-align: center;">Add New Expense 💸</h3><br>
-        <form id="form1">
+        <h3 class="expense-heading">Add New Expense 💸</h3>
+        <form id="form1" class="scroll-margin-top">
           <div class="form-group">
             <label for="exampleFormControlInput1">Expense Amount</label>
             <input type="number" class="form-control" name="amount" id="amount" placeholder="Example : 1000" required>
@@ -69,6 +76,11 @@
               <option value="Food">Food</option>
               <option value="HouseHold">HouseHold</option>
               <option value="Transport">Transport</option>
+              <option value="Shopping">Shopping</option>
+              <option value="Travel & Tickets">Travel & Tickets</option>
+              <option value="Music and Sports">Music and Sports</option>
+              <option value="festival">festival</option>
+              <option value="EMI and Bills">EMI and Bills</option>
               <option value="Others">Others</option>
             </select>
             
@@ -82,13 +94,16 @@
         </form>
       </div>
       <div style="color: #E9E8E8;" class="col">
-        <h3 style="text-align: center; ">LeaderBoard 👑</h3>
+        
+        <h3 class="leaderboard-heading">LeaderBoard 🏆</h3>
         <br>
         <div class="leaderboardColumn">
           
+          <div class="premiumBox"></div>
+          <button id="buyPremiumBtn" class="btn btn-primary" style="display: none;" title="Buy premium to access Leaderboard and daily reports!">Buy Premium to Unlock</button>
         </div>
     </div>
-  </div>
+  </div>   
     <br><br>
 
     <!-- Container to show Expense List -->
@@ -145,4 +160,4 @@
   </script>
 </body>
 
-</html>x
+</html>

@@ -1,5 +1,7 @@
 body {
-    background-color: #95e4bf;
+    
+    background-image: url('/images/error.png');
+    background-color: #a7ddc3;
     color: #343a40;
     font-family: Arial, sans-serif;
 }
@@ -13,7 +15,8 @@ h1.display-1 {
 p.lead {
     font-size: 1.8rem;
     margin-bottom: 30px;
-    color: rgb(21, 18, 18)
+    color: rgb(21, 18, 18);
+    font-weight:bold;
 }
 
 a.btn-primary {

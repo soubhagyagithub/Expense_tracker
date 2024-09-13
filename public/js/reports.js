@@ -10,25 +10,33 @@ const tfootMonthly = document.getElementById("tfootMonthlyId");
 
 const logoutBtn = document.getElementById("logoutBtn");
 
+// Function to format and display the username
+function formatAndDisplayUsername(fullName) {
+  const firstName = fullName.split(' ')[0];
+  const displayName = `${firstName} ....`;
+  const profileDropdown = document.getElementById('profileDropdown');
+  if (profileDropdown) {
+  profileDropdown.querySelector('span').textContent = displayName;
+  }
+}
+
 async function getDailyReport(e) {
   try {
     e.preventDefault();
     const token = localStorage.getItem("token");
     const date = new Date(dateInput.value);
-    const formattedDate = `${date.getDate().toString().padStart(2, "0")}-${(
-      date.getMonth() + 1
-    )
-      .toString()
-      .padStart(2, "0")}-${date.getFullYear()}`;
+    const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
+
+    console.log("Formatted Date for Request: ", formattedDate);
 
     let totalAmount = 0;
     const res = await axios.post(
       "http://localhost:3000/reports/dailyReports",
-      {
-        date: formattedDate,
-      },
+      { date: formattedDate },
       { headers: { Authorization: token } }
     );
+
+    console.log("Response Data: ", res.data); // Check response
 
     tbodyDaily.innerHTML = "";
     tfootDaily.innerHTML = "";
@@ -42,7 +50,9 @@ async function getDailyReport(e) {
 
       const th = document.createElement("th");
       th.setAttribute("scope", "row");
-      th.appendChild(document.createTextNode(expense.date));
+      th.style.color = 'white'; // Set serial number color to white
+      const expenseDate = new Date(expense.createdAt);
+      th.appendChild(document.createTextNode(`${expenseDate.getDate().toString().padStart(2, "0")}-${(expenseDate.getMonth() + 1).toString().padStart(2, "0")}-${expenseDate.getFullYear()}`));
 
       const td1 = document.createElement("td");
       td1.appendChild(document.createTextNode(expense.category));
@@ -70,6 +80,8 @@ async function getDailyReport(e) {
 
     td3.setAttribute("id", "dailyTotal");
     td4.setAttribute("id", "dailyTotalAmount");
+    td3.style.color = 'pink'; // Set total label color to pink
+    td4.style.color = 'pink'; // Set total amount color to pink
     td3.appendChild(document.createTextNode("Total"));
     td4.appendChild(document.createTextNode(totalAmount));
 
@@ -78,7 +90,7 @@ async function getDailyReport(e) {
     tr.appendChild(td3);
     tr.appendChild(td4);
   } catch (error) {
-    console.log(error);
+    console.log("Error: ", error);
   }
 }
 
@@ -87,18 +99,18 @@ async function getMonthlyReport(e) {
     e.preventDefault();
     const token = localStorage.getItem("token");
     const month = new Date(monthInput.value);
-    const formattedMonth = `${(month.getMonth() + 1)
-      .toString()
-      .padStart(2, "0")}`;
+    const formattedMonth = `${month.getFullYear()}-${(month.getMonth() + 1).toString().padStart(2, "0")}`;
+
+    console.log("Formatted Month for Request: ", formattedMonth);
 
     let totalAmount = 0;
     const res = await axios.post(
       "http://localhost:3000/reports/monthlyReports",
-      {
-        month: formattedMonth,
-      },
+      { month: formattedMonth },
       { headers: { Authorization: token } }
     );
+
+    console.log("Response Data: ", res.data); // Check response
 
     tbodyMonthly.innerHTML = "";
     tfootMonthly.innerHTML = "";
@@ -112,7 +124,9 @@ async function getMonthlyReport(e) {
 
       const th = document.createElement("th");
       th.setAttribute("scope", "row");
-      th.appendChild(document.createTextNode(expense.date));
+      th.style.color = 'white'; // Set serial number color to white
+      const expenseDate = new Date(expense.createdAt);
+      th.appendChild(document.createTextNode(`${expenseDate.getDate().toString().padStart(2, "0")}-${(expenseDate.getMonth() + 1).toString().padStart(2, "0")}-${expenseDate.getFullYear()}`));
 
       const td1 = document.createElement("td");
       td1.appendChild(document.createTextNode(expense.category));
@@ -140,6 +154,8 @@ async function getMonthlyReport(e) {
 
     td3.setAttribute("id", "monthlyTotal");
     td4.setAttribute("id", "monthlyTotalAmount");
+    td3.style.color = 'pink'; // Set total label color to pink
+    td4.style.color = 'pink'; // Set total amount color to pink
     td3.appendChild(document.createTextNode("Total"));
     td4.appendChild(document.createTextNode(totalAmount));
 
@@ -148,9 +164,12 @@ async function getMonthlyReport(e) {
     tr.appendChild(td3);
     tr.appendChild(td4);
   } catch (error) {
-    console.log(error);
+    console.log("Error: ", error);
   }
 }
+
+
+
 
 async function logout() {
   try {
@@ -161,6 +180,28 @@ async function logout() {
   }
 }
 
+async function updatePremiumUI() {
+  const isPremium = localStorage.getItem('isPremium') === 'true';
+  const premiumNavItem = document.getElementById('premiumNavItem');
+
+  if (!isPremium) {
+      premiumNavItem.style.display = 'none';
+  } else {
+      premiumNavItem.style.display = 'block';
+      unlockReportsAfterPremiumMember()
+  }
+}
+
+const token = localStorage.getItem("token");
+const decodedToken = JSON.parse(atob(token.split('.')[1]));
+const fullName = decodedToken.name;
+
+        
+const userName = formatAndDisplayUsername(fullName);
+window.addEventListener("DOMContentLoaded", userName)
+window.addEventListener("DOMContentLoaded", updatePremiumUI)
+
 dateShowBtn.addEventListener("click", getDailyReport);
 monthShowBtn.addEventListener("click", getMonthlyReport);
 logoutBtn.addEventListener("click", logout);
+

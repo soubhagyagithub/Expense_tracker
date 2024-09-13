@@ -1,32 +1,83 @@
 const signUp = document.getElementById("signUp");
 const signIn = document.getElementById("signIn");
 const container = document.getElementById("container");
-const signUpBtn = document.getElementById("signUpBtn");
 const loginBtn = document.getElementById("loginBtn");
 const loginEmail = document.getElementById("loginEmail");
 const loginPassword = document.getElementById("loginPassword");
 
+const registerBtn = document.getElementById("registerBtn");
+const closeBtn = document.getElementById("closeBtn");
+
 signUp.addEventListener("click", () => {
   container.classList.add("active");
+  history.pushState(null, null, '/user/signUp');
 });
 
 signIn.addEventListener("click", () => {
   container.classList.remove("active");
+  history.pushState(null, null, '/user/login');
 });
 
-function userSignUp(event) {
+registerBtn.addEventListener("click", () => {
+  container.style.display = "block";
+  registerBtn.style.display = "none";
+  history.pushState(null, null, '/user/login');
+});
+
+closeBtn.addEventListener("click", () => {
+  container.style.display = "none";
+  registerBtn.style.display = "block";
+  history.pushState(null, null, '/');
+});
+
+// showing eye logo to see password
+document.querySelectorAll(".fa-eye").forEach((eyeIcon) => {
+  eyeIcon.addEventListener("click", function () {
+    const passwordField = this.previousElementSibling;
+    passwordField.type =
+      passwordField.type === "password" ? "text" : "password";
+    this.classList.toggle("fa-eye-slash");
+  });
+});
+
+window.onload = function() {
+  const url = window.location.pathname;
+
+  if (url.endsWith("/signUp")) {
+    container.style.display = "block";
+    registerBtn.style.display = "none";
+  } else if (url.endsWith("/login")) {
+    container.style.display = "block";
+    registerBtn.style.display = "none";
+  }
+};
+// SignUp functionality
+async function createUser(event) {
   event.preventDefault();
+
+  const password = event.target.password.value;
+  const confirmPassword = event.target.confirmPassword.value;
+  
+  if (password.length < 6) {
+    alert("Password must be at least 6 characters long.");
+    return
+  }
+  if (password !== confirmPassword) {
+    alert("Passwords do not match.");
+    return;
+  }
+
   const signUpDetails = {
-    userName: event.target.name.value,
-    userEmail: event.target.email.value,
-    userPassword: event.target.password.value,
+    name: event.target.name.value,
+    email: event.target.email.value,
+    password: password,
   };
-  console.log(signUpDetails);
-  axios
+
+  await axios
     .post("http://localhost:3000/user/signUp", signUpDetails)
     .then((res) => {
       alert(res.data.message);
-      window.location.href = "/";
+      window.location.href = "/user/login";
     })
     .catch((error) => {
       if (error.response) {
@@ -38,13 +89,20 @@ function userSignUp(event) {
     });
 }
 
-function login() {
+// SignIn functionality
+
+async function login() {
+  if (!loginEmail.value || !loginPassword.value) {
+    alert("Please fill in both fields.");
+    return;
+  }
+
   const loginDetails = {
-    loginEmail: loginEmail.value,
-    loginPassword: loginPassword.value,
+    email: loginEmail.value,
+    password: loginPassword.value,
   };
 
-  axios
+  await axios
     .post("http://localhost:3000/user/login", loginDetails)
     .then((result) => {
       alert(result.data.message);
@@ -63,3 +121,6 @@ function login() {
 }
 
 loginBtn.addEventListener("click", login);
+document.getElementById('forgotPasswordLink').addEventListener('click', function () {
+  window.location.href = '/password/forgotPasswordPage';
+});

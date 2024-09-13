@@ -8,20 +8,34 @@
 }
 
 body {
-  background-color: #c9d6ff;
-  background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+  background: linear-gradient(to right, #bed6eb, #b5e3f0);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 100vh;
+  height: 100vh;  
+}
+
+.close-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #0d0d0f;
+  z-index: 1001;
 }
 
 .container {
   background-color: #fff;
   border-radius: 30px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-  position: relative;
+  top: 50%; /* Center vertically */
+  left: 50%; 
+  transform: translate(-50%, -50%);
+  position: absolute;
   overflow: hidden;
   width: 768px;
   max-width: 100%;
@@ -46,7 +60,7 @@ body {
   margin: 15px 0 10px;
 }
 
-.container button {
+.container button{
   background-color: #512da8;
   color: #fff;
   font-size: 12px;
@@ -212,3 +226,169 @@ body {
 .container.active .toggle-right {
   transform: translateX(200%);
 }
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  max-width: 1200px;
+  margin-top: 15px;
+}
+
+.logo {
+  width: 60px;
+  height: auto;
+  margin-right: 5px;
+}
+
+h2 {
+  font-size: 1.9rem;
+  color: #333;
+  margin-right: auto;
+}
+
+.money-img {
+  width: 90px;
+  height: auto;
+  
+}
+
+.img-container {
+  display: flex;
+  justify-content: space-between; /* Space between the elements */
+  align-items: center; /* Align items vertically in the center */
+  padding: 20px;
+  margin-top: 15px;
+  max-width: 1200px; /* Set a max width for the layout */
+  margin-left: auto; /* Center horizontally */
+  margin-right: auto; /* Center horizontally */
+}
+
+/* Larger images */
+.home-image {
+  width: 400px; /* Increase width for left and right images */
+  height: auto;
+}
+
+/* Center content style (h4 and button) */
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* h4 styling */
+.content h4 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Register button styling */
+.register-btn {
+  background-color: #4CAF50; /* Green button */
+  color: white;
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.register-btn:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+/* Adjust animated text for the top section */
+.animated-text {
+  font-size: 2rem; /* Adjust as needed */
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  animation: typing 5s steps(30, end) infinite;
+  border-right: none;
+}
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column; /* Stack vertically on mobile */
+    align-items: center;
+  }
+  .logo {
+    width: 50px; /* Smaller logo on mobile */
+  }
+
+  h2 {
+    font-size: 1.5rem; /* Smaller heading on mobile */
+  }
+  .img-container {
+    flex-direction: column; /* Stack images and content vertically */
+    align-items: center; /* Center items horizontally */
+  }
+
+
+  .home-image {
+    width: 100%; /* Make images take up full width on mobile */
+    max-width: 400px; /* Set a max-width to prevent overly large images */
+    margin-bottom: 20px; /* Space between images */
+  }
+
+  .content h4 {
+    font-size: 1.3rem; /* Smaller font size on mobile */
+    margin: 0 20px; /* Add horizontal padding */
+  }
+
+  .register-btn {
+    padding: 10px 20px; /* Smaller button on mobile */
+    font-size: 1rem; /* Smaller font size on mobile */
+  }
+
+  .animated-text {
+    font-size: 1.5rem; /* Smaller animated text on mobile */
+  }
+}
+
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%; 
+}
+
+.password-container input {
+  width: 100%; 
+  padding-right: 40px; 
+}
+
+.password-container i {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  color: #666;
+}
+.animated-text {
+  font-size: 2rem;
+  color: #333333;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap; /* Prevent text wrapping */
+  width: 0; /* Initial width */
+  animation: typing 5s steps(30, end) infinite; /* Typing effect with infinite loop */
+  border-right: none; /* Remove the line (cursor) */
+}
+
+/* Typing and deleting effect */
+@keyframes typing {
+  0% { width: 0; } /* Start with no text visible */
+  50% { width: 100%; } /* Gradually show the text */
+  100% { width: 0; } /* Gradually hide the text */
+}
+
+
+
+
+
