@@ -6,27 +6,10 @@ const userAuthentication = require("../middleware/auth");
 router.use(express.static("public"));
 
 router.get("/", expenseController.getHomePage);
-router.get(
-  "/getAllExpenses",
-  userAuthentication,
-  expenseController.getAllExpenses
-);
-router.get(
-  "/getAllExpenses/:page",
-  userAuthentication,
-  expenseController.getAllExpensesforPagination
-);
-router.get(
-  "/deleteExpense/:id",
-  userAuthentication,
-  expenseController.deleteExpense
-);
 
+router.get("/getExpense",userAuthentication,expenseController.getExpenses);
 router.post("/addExpense", userAuthentication, expenseController.addExpense);
-router.post(
-  "/editExpense/:id",
-  userAuthentication,
-  expenseController.editExpense
-);
+router.put("/editExpense/:id",userAuthentication,expenseController.editExpense);
+router.delete("/deleteExpense/:id",userAuthentication,expenseController.deleteExpense);
 
 module.exports = router;

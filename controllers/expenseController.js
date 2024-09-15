@@ -16,118 +16,140 @@ exports.getHomePage = async (req, res, next) => {
 exports.addExpense = async (req, res, next) => {
   const t = await sequelize.transaction();
   try {
-    const date = req.body.date;
-    const category = req.body.category;
-    const description = req.body.description;
-    const amount = req.body.amount;
+    const { category, description, amount } = req.body;
 
     await User.update(
-      {
-        totalExpenses: req.user.totalExpenses + Number(amount),
-      },
-      { where: { id: req.user.id } },
-      { transaction: t }
+      { totalExpenses: req.user.totalExpenses + Number(amount) },
+      { where: { id: req.user.id }, transaction: t }
     );
 
     await Expense.create(
       {
-        date: date,
         category: category,
         description: description,
         amount: amount,
         userId: req.user.id,
       },
       { transaction: t }
-    )
-      .then((result) => {
-        res.status(200);
-        res.redirect("/homePage");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    );
+
     await t.commit();
-  } catch {
-    async (err) => {
-      await t.rollback();
+    res.status(200).json({ success: true });
+  } catch (err) {
+    await t.rollback();
+    console.log(err);
+    res.status(500).json({ success: false });
+  }
+};
+
+exports.getExpenses= async (req, res, next) => {
+  try {
+    if(!req.query.page){
+      req.query = {
+          page : 1,
+          size : 10
+      }
+    }
+   
+    console.log(req.query);
+        const expenses = await req.user.getExpenses({
+            offset : ((parseInt(req.query.page)-1) * parseInt(req.query.size)),
+            limit: parseInt(req.query.size),
+            order: [['createdAt', 'DESC']]
+        });
+        const totalExpenses = await req.user.getExpenses({
+          attributes: [
+              [sequelize.fn('COUNT', sequelize.col('id')), 'TOTAL_EXPENSES'],
+          ]
+        });
+        const isPremium = req.user.dataValues.isPremiumUser
+        const data = {
+            isPremium : isPremium,
+            expenses : expenses,
+            totalExpenses : totalExpenses[0].dataValues.TOTAL_EXPENSES
+        }
+        res.status(200).json(data);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
+exports.deleteExpense = async (req, res) => {
+  const transaction = await sequelize.transaction();
+  try {
+      const expenseId = req.params.id;
+
+      // Find the expense to get its amount
+      const expense = await Expense.findByPk(expenseId, { transaction });
+
+      if (!expense) {
+          await transaction.rollback();
+          return res.status(404).json({ message: "Expense not found" });
+      }
+
+      const amount = expense.amount;
+
+      // Delete the expense
+      await Expense.destroy({
+          where: { id: expenseId },
+          transaction
+      });
+
+      // Update the totalExpenses in User table
+      await req.user.update({
+          totalExpenses: req.user.totalExpenses - amount
+      }, { transaction });
+
+      // Commit the transaction if everything is successful
+      await transaction.commit();
+      res.json({ success: true });
+  } catch (err) {
       console.log(err);
-    };
+      // Rollback the transaction in case of error
+      await transaction.rollback();
+      res.status(500).json(null);
   }
-};
+}
 
-exports.getAllExpenses = async (req, res, next) => {
+exports.editExpense = async (req, res) => {
+  const transaction = await sequelize.transaction();
   try {
-    const expenses = await Expense.findAll({ where: { userId: req.user.id } });
-    res.json(expenses);
+      const { amount, description, category } = req.body;
+      const expenseId = req.params.id;
+
+      // Find the expense to get the old amount
+      const expense = await Expense.findByPk(expenseId, { transaction });
+
+      if (!expense) {
+          await transaction.rollback();
+          return res.status(404).json({ message: "Expense not found" });
+      }
+
+      const oldAmount = expense.amount;
+
+      // Update the expense
+      await Expense.update({
+          amount,
+          description,
+          category
+      }, {
+          where: { id: expenseId },
+          transaction
+      });
+
+      // Update the totalExpenses in User table
+      await req.user.update({
+          totalExpenses: req.user.totalExpenses - oldAmount + Number(amount)
+      }, { transaction });
+
+      // Commit the transaction if everything is successful
+      await transaction.commit();
+      res.json({ success: true });
   } catch (err) {
-    console.log(err);
+      console.log(err);
+      // Rollback the transaction in case of error
+      await transaction.rollback();
+      res.status(500).json(null);
   }
-};
-
-exports.getAllExpensesforPagination = async (req, res, next) => {
-  try {
-    const pageNo = req.params.page;
-    const limit = 10;
-    const offset = (pageNo - 1) * limit;
-    const totalExpenses = await Expense.count({
-      where: { userId: req.user.id },
-    });
-    const totalPages = Math.ceil(totalExpenses / limit);
-    const expenses = await Expense.findAll({
-      where: { userId: req.user.id },
-      offset: offset,
-      limit: limit,
-    });
-    res.json({ expenses: expenses, totalPages: totalPages });
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-exports.deleteExpense = async (req, res, next) => {
-  const id = req.params.id;
-  try {
-    const expense = await Expense.findByPk(id);
-    await User.update(
-      {
-        totalExpenses: req.user.totalExpenses - expense.amount,
-      },
-      { where: { id: req.user.id } }
-    );
-    await Expense.destroy({ where: { id: id, userId: req.user.id } });
-    res.redirect("/homePage");
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-exports.editExpense = async (req, res, next) => {
-  try {
-    const id = req.params.id;
-    const category = req.body.category;
-    const description = req.body.description;
-    const amount = req.body.amount;
-
-    const expense = await Expense.findByPk(id);
-
-    await User.update(
-      {
-        totalExpenses: req.user.totalExpenses - expense.amount + Number(amount),
-      },
-      { where: { id: req.user.id } }
-    );
-
-    await Expense.update(
-      {
-        category: category,
-        description: description,
-        amount: amount,
-      },
-      { where: { id: id, userId: req.user.id } }
-    );
-
-    res.redirect("/homePage");
-  } catch (err) {
-    console.log(err);
-  }
-};
+}

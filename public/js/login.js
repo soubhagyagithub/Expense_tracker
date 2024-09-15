@@ -77,7 +77,7 @@ async function createUser(event) {
     .post("http://localhost:3000/user/signUp", signUpDetails)
     .then((res) => {
       alert(res.data.message);
-      window.location.href = "/";
+      window.location.href = "/user/login";
     })
     .catch((error) => {
       if (error.response) {

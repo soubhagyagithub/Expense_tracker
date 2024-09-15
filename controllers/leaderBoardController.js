@@ -1,17 +1,23 @@
-const path = require("path");
+
 const User = require("../models/userModel");
 const Expense = require("../models/expenseModel");
 const sequelize = require("../util/database");
 
-exports.getLeaderboardPage = async (req, res, next) => {
-  try {
-    res.sendFile(
-      path.join(__dirname, "../", "public", "views", "leaderboard.html")
-    );
-  } catch {
-    (err) => console.log(err);
-  }
+
+
+exports.getLeaderboard = async (req, res) => {
+    try {
+        const leaderboard = await User.findAll({
+            attributes: ['id', 'name', 'totalExpenses'],
+            order: [['totalExpenses', 'DESC']]
+        });
+        res.status(200).json(leaderboard);
+    } catch (err) {
+        console.log(err);
+        res.status(400).json(null);
+    }
 };
+
 
 // exports.getLeaderboard = (req, res, next) => {
 //   Expense.findAll({

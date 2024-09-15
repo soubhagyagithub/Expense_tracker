@@ -18,42 +18,54 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css"
     />
     <link rel="stylesheet" href="/css/reports.css" />
+     <link rel="icon" href="/images/favicon.png" type="image/icon type">
   </head>
 
   <body>
     <!--------------------------------------------------------------------------------- -->
     <!-- Nav Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark" id="navigation">
+    <nav class="navbar navbar-expand-lg navbar" id="navigation">
       <div class="container-fluid">
-       <a href="/homePage" style="text-decoration: none;">
-         <p style="font-size:35px; height: 35px;">&#128221</p>
+        <a href="/homePage">
+          
+          <img src="/images/expenseicon.png" width="40px" height="40px" id="png" />
         </a>
         <a class="navbar-brand" href="/homePage">Expense Tracker</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+         <!-- Navbar Toggler Button -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+  
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/homePage">Home</a>
+              <a class=" text-white nav-link active " aria-current="page" href="/homePage">Home</a>
             </li>
             <li class="nav-item">
-              <a id="reportsLink" class="nav-link active" aria-current="page" href="#" onclick="onClickAlert();">Reports &#128081</a>
+              <a id="reportsLink" class=" text-white nav-link active" aria-current="page" href="#" onclick="onClickAlert();">Reports &#128081</a>
             </li>
-            <li class="nav-item">
-              <a id="leaderboardLink" class="nav-link active" aria-current="page" href="#" onclick="onClickAlert();">LeaderBoard &#128081</a>
-            </li>
+            
           </ul>
-          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button id="buyPremiumBtn" class="topBtn btn py-1" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Premium Membership inclues LeaderBoard & Daily & Monthly Reports">
-              Buy Premium &#128081
-            </button>
-            <button id="logoutBtn" class="topBtn btn py-1" type="button">Log out</button>
+          <div style="background-color: rgb(67, 67, 67); border-radius: 3px; margin-right: 20px; font-size: 20px;">
+            <li class="nav-item" id="premiumNavItem" style="display: none; ">
+              <a class="text-white fw-bold nav-link active" href="#">Premium Member👑</a>
+            </li>
           </div>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button id="logoutBtn" class="topBtn btn btn-move py-1" type="button">Logout</button> 
+          </div>
+        <!-- Profile Dropdown -->
+        <div style="margin-left: 10px;">
+          <a class="d-flex align-items-center text-white text-decoration-none  pl-6 " href="#" id="profileDropdown" data-bs-toggle="" aria-expanded="false">
+            <img src="/images/profile2.png" alt="Profile" width="40px" height="40px" class="rounded-circle me-2" />
+            <span>Username</span>
+          </a>
+          
+        </div>
         </div>
       </div>
     </nav>
-  
+  <br><br><br>
 
     <!-- ----------------------------------------------------------------------- -->
     <!-- Daily Table -->
