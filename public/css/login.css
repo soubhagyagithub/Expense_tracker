@@ -8,7 +8,7 @@
 }
 
 body {
-  background: linear-gradient(to right, #b9c4cf, #d1f1fa);
+  background: linear-gradient(to right, #f4f7f9, #cae5ec);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -299,7 +299,7 @@ h2 {
 }
 
 .register-btn:hover {
-  background-color: #45a049; /* Darker green on hover */
+  background-color: #4ad251; /* Darker green on hover */
 }
 
 /* Adjust animated text for the top section */
@@ -333,7 +333,7 @@ h2 {
 
   .home-image {
     width: 100%; /* Make images take up full width on mobile */
-    max-width: 400px; /* Set a max-width to prevent overly large images */
+    max-width: 430px; /* Set a max-width to prevent overly large images */
     margin-bottom: 20px; /* Space between images */
   }
 

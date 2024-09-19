@@ -40,10 +40,13 @@ exports.sendMail = async (req, res, next) => {
       isActive: true,
       userId: recepientEmail.dataValues.id,
     });
+    
 
     const client = Sib.ApiClient.instance;
     const apiKey = client.authentications["api-key"];
     apiKey.apiKey = process.env.RESET_PASSWORD_API_KEY;
+   
+
     const transEmailApi = new Sib.TransactionalEmailsApi();
     const sender = {
       email: "ssoubhagyaranjan98@gmail.com",
@@ -70,7 +73,7 @@ exports.sendMail = async (req, res, next) => {
         "Link for reset the password is successfully send on your Mail Id!",
     });
   } catch (error) {
-    console.log("error");
+    console.log("Error:", error); 
     return res.status(409).json({ message: "failed changing password" });
   }
 };
