@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link rel="stylesheet" href="css/login.css" />
+  <title>Expense Tracker</title>
+  <link rel="icon" href="/images/favicon.png" type="image/icon type">
+</head>
+<body>
+  <!-- Header section with logo, title, and money image -->
+  <div class="header-container">
+    <img src="/images/logo.png" alt="Logo" class="logo" style="margin-left: -90px;">
+    <h2>Expense Tracker</h2>
+    <img src="/images/money.png" alt="Money Image" class="money-img">
+  </div>
+
+  <h4 class="animated-text" style="font-size: 25px;">Hii,<span style="color: rgb(158, 58, 178);"> there! 👏🏻</span></h4>
+  <h4 class="animated-text" style="font-size: 30px;font-style: italic;">Track money to  <span style="color: rgb(255, 29, 187);">save money</span>💸!</h4>
+
+  <div class="img-container">
+    <img src="/images/home1.png" alt="Home Image 1" class="home-image">
+    <div class="content">
+      <h4>Start your Journey By Registering <span style="color: rgb(191, 0, 255);">here</span></h4>
+      <button id="registerBtn" class="register-btn">Register or Login</button>
+    </div>
+    <img src="/images/home2.png" alt="Home Image 2" class="home-image">
+  </div>
+
+  <!-- Form Container for SignUp and Login -->
+  <div class="container" id="container" style="display: none;">
+    <button id="closeBtn" class="close-btn" style="background-color: transparent; font-size: 18px; color: black;" >X</button>
+    
+    <!-- Signup Form -->
+    <div class="form-container sign-up">
+      <form onsubmit="createUser(event)" >
+        <h1>Create Account</h1>
+        <span>Fill your credentials for registration</span>
+        <input type="text" placeholder="Name" name="name" id="name" required />
+        <input type="email" placeholder="Email" name="email" id="email" required />
+        <div class="password-container">
+          <input type="password" placeholder="Password" name="password" id="password" required minlength="6" />
+          <i class="fa fa-eye" id="togglePasswordSignUp"></i>
+        </div>
+        <div class="password-container">
+          <input type="password" placeholder="Confirm Password" name="confirmPassword" id="confirm-password" required />
+          <i class="fa fa-eye" id="toggleConfirmPasswordSignUp"></i>
+        </div>
+        <button id="signUpBtn" class="form-btn">Sign Up</button>
+      </form>
+    </div>
+
+    <!-- Login Form -->
+    <div class="form-container sign-in">
+      <form onsubmit="return false">
+        <h1>Sign In</h1>
+        <span>Use your email and password</span>
+        <input type="email" placeholder="Email" name="loginEmail" id="loginEmail" required />
+        <div class="password-container">
+          <input type="password" placeholder="Password" name="loginPassword" id="loginPassword" minlength="6" required />
+          <i class="fa fa-eye" id="togglePasswordSignIn"></i>
+        </div>
+        <a href="#" id="forgotPasswordLink">Forget Your Password?</a>
+        <button id="loginBtn" class="form-btn">Sign In</button>
+      </form>
+    </div>
+    
+    <div class="toggle-container">
+      <div class="toggle">
+        <div class="toggle-panel toggle-left">
+          <h1>Welcome Back!</h1>
+          <p>Enter your personal details to use all of site features</p>
+          <button class="hidden" id="signIn">Sign In</button>
+        </div>
+        <div class="toggle-panel toggle-right">
+          <h1>Hello, Friend!</h1>
+          <p>Register with your personal details to use all of site features</p>
+          <button class="hidden" id="signUp">Sign Up</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"></script>
+  <script src="/js/login.js"></script>
+</body>
+</html>

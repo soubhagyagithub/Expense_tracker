@@ -1,0 +1,125 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #212123;
+  
+}
+
+.navbar {
+  background-color: rgb(69, 80, 103);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.navbar-brand {
+  color: white
+}
+
+.navbar-brand:hover {
+  color: white;
+}
+
+.nav-item {
+  color: whilte;
+  display: flex;
+  font-size: 18px;
+}
+
+.topBtn {
+  font-size: 18px;
+  background-color: rgb(12, 208, 104);
+  color: #FFFFFF;
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+.topBtn:hover {
+  background-color: rgb(63, 60, 209);
+  color: rgb(247, 246, 246);
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+
+.expense-heading{
+  text-align: left;
+  padding-top: 80px;
+}
+.leaderboard-heading{
+  text-align: center;
+  padding-top: 80px;
+}
+h3 {
+  color: #E9E8E8;
+
+}
+.scroll-margin-top {
+  scroll-margin-top: 70px; /* Adjust the value as needed */
+}
+
+.form-group {
+  padding: 10px;
+  color: #E9E8E8;
+}
+
+.btnReport {
+  background-color: #453674;
+  border-color: #453674;
+  color: #E9E8E8;
+}
+
+.btnReport:hover {
+  background-color: #482f92;
+  color: #E9E8E8;
+}
+
+.showExpenses {
+  background-color: #c3e9e9;
+  border-radius: 2px;
+}
+
+.table thead {
+  background-color: #f3f5f6;
+
+}
+
+th {
+  color: #0e0d0f;
+}
+
+#submitBtn {
+  font-size: 17px;
+}
+.page-link{
+  cursor: pointer;
+}
+
+.premiumBox {
+  height: 100%;    
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#buyPremiumBtn{
+  margin-left: 35%;
+
+}
+.leaderboardColumn table {
+
+  color: #FFFFFF;
+  margin-top: 10px;
+
+}
+
+.leaderboardColumn table th,
+.leaderboardColumn table td {
+  border-color: #CD5888;
+
+}

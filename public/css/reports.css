@@ -1,0 +1,108 @@
+
+*{
+  margin: 0;
+  padding: 0;
+}
+body{
+  font-family: 'Roboto', sans-serif;
+  background-color: #d8d7d7;
+}
+.navbar {
+  background-color: rgb(69, 80, 103);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+.navbar-brand{
+  color:white
+}
+.navbar-brand:hover{
+  color: white;
+}
+.nav-item{
+  color: whilte;
+  display: flex;
+  font-size: 17px;
+}
+
+.topBtn{
+  font-size: 18px;
+  background-color: rgb(82, 227, 150);
+  color:#FFFFFF;
+  border-radius: 5px;
+}
+.topBtn:hover{
+  background-color: rgb(63, 60, 209);
+  color: rgb(247, 246, 246);
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+#table {
+  
+  border-radius: 10px;
+  background-color: #dcf8bd;
+  background-image: linear-gradient(to bottom right, #5a798b, rgb(69, 80, 103));
+  box-shadow: 1px 1px 4px #b8b8b8;
+  margin-bottom: 3%;
+  color: white;
+  
+}
+th{
+  color:rgb(239, 231, 71)
+}
+td{
+  color:white
+}
+
+.showBtn {
+  width: 80px;
+  background-color: #007bff;
+  
+  color: white;
+}
+
+
+#year-input {
+  background-color: white;
+  width: auto;
+  border: 1px;
+  border-radius: 7px;
+  color: #293241;
+  padding: 7px;
+  margin: 7px -4px;
+}
+
+
+#category {
+  width: 300px;
+}
+
+.input-group-text {
+  background-color: #fcfcfd;
+  color: white;
+  border: none;
+}
+
+#description {
+  width: 2000px;
+}
+
+.trStyle {
+  background-color: transparent;
+}
+
+.showBtn:hover {
+  background-color: #274ff0;
+  color: white;
+
+}
+
+#dailyTotal,
+#dailyTotalAmount,
+#monthlyTotal,
+#monthlyTotalAmount {
+  font-weight: bolder !important;
+}
