@@ -30,15 +30,7 @@ closeBtn.addEventListener("click", () => {
   history.pushState(null, null, '/');
 });
 
-// showing eye logo to see password
-document.querySelectorAll(".fa-eye").forEach((eyeIcon) => {
-  eyeIcon.addEventListener("click", function () {
-    const passwordField = this.previousElementSibling;
-    passwordField.type =
-      passwordField.type === "password" ? "text" : "password";
-    this.classList.toggle("fa-eye-slash");
-  });
-});
+
 
 window.onload = function() {
   const url = window.location.pathname;
