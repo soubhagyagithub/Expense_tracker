@@ -51,7 +51,7 @@ const ResetPassword = require("./models/resetPasswordModel");
 User.hasMany(Expense);
 Expense.belongsTo(User);
 
-User.hasMany(Order);
+User.hasMany(Order);    
 Order.belongsTo(User);
 
 User.hasMany(ResetPassword);
