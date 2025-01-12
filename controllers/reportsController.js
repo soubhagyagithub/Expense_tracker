@@ -30,7 +30,31 @@ exports.dailyReports = async (req, res, next) => {
     return res.send(expenses);
   } catch (error) {
     console.log(error);
-    res.status(500).send('Server Error');
+    res.status(500).send("Server Error");
+  }
+};
+
+exports.weeklyReports = async (req, res, next) => {
+  try {
+    const { startDate, endDate } = req.body;
+
+    if (!startDate || !endDate) {
+      return res.status(400).send("Start and end dates are required");
+    }
+
+    const expenses = await Expense.findAll({
+      where: {
+        createdAt: {
+          [Op.between]: [new Date(startDate), new Date(endDate)],
+        },
+        userId: req.user.id,
+      },
+    });
+
+    return res.send(expenses);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server Error");
   }
 };
 
@@ -58,6 +82,6 @@ exports.monthlyReports = async (req, res, next) => {
     return res.send(expenses);
   } catch (error) {
     console.log(error);
-    res.status(500).send('Server Error');
+    res.status(500).send("Server Error");
   }
 };

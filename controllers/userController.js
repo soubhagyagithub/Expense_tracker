@@ -4,8 +4,11 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 // Generate access token for user authentication
-function generateAccessToken(id, email, name) {
-  return jwt.sign({ userId: id, email, name }, process.env.TOKEN);
+function generateAccessToken(id, email, name, isPremiumUser) {
+  return jwt.sign(
+    { userId: id, email, name, isPremiumUser }, // Include all necessary fields in the payload
+    process.env.TOKEN
+  );
 }
 
 // Middleware to check if the user is a premium user
@@ -25,7 +28,9 @@ const getLoginPage = async (req, res) => {
     res.sendFile(path.join(__dirname, "../public/views/login.html"));
   } catch (error) {
     console.error(error);
-    res.status(500).json({ success: false, message: "Unable to load login page" });
+    res
+      .status(500)
+      .json({ success: false, message: "Unable to load login page" });
   }
 };
 
@@ -48,7 +53,6 @@ const postUserSignUp = async (req, res) => {
       success: true,
       message: "User Created Successfully",
     });
-
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false, message: "Internal server error" });
@@ -70,7 +74,12 @@ const postUserLogin = async (req, res) => {
 
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
     if (isPasswordCorrect) {
-      const token = generateAccessToken(user.id, user.email, user.name);
+      const token = generateAccessToken(
+        user.id,
+        user.email,
+        user.name,
+        user.isPremiumUser
+      );
       return res.status(200).json({
         success: true,
         message: "Login successful!",
@@ -82,7 +91,6 @@ const postUserLogin = async (req, res) => {
       success: false,
       message: "Password incorrect!",
     });
-
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false, message: "Internal server error" });

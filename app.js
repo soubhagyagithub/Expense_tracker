@@ -24,7 +24,7 @@ app.use(morgan("combined", { stream: accessLogStream }));
 const userRouter = require("./router/userRouter");
 const expenseRouter = require("./router/expenseRouter");
 const purchaseMembershipRouter = require("./router/purchaseMembershipRouter");
-const leaderboardRouter = require("./router/leaderboardRouter");
+const premiumFeaturesRouter = require("./router/premiumFeaturesRouter");
 const resetPasswordRouter = require("./router/resetPasswordRouter");
 const reportsRouter = require("./router/reportsRouter");
 
@@ -33,7 +33,7 @@ app.use("/user", userRouter);
 app.use("/homePage", expenseRouter);
 app.use("/expense", expenseRouter);
 app.use("/purchase", purchaseMembershipRouter);
-app.use("/leaderboard", leaderboardRouter);
+app.use("/premium", premiumFeaturesRouter);
 app.use("/password", resetPasswordRouter);
 app.use("/reports", reportsRouter);
 
@@ -47,18 +47,22 @@ const User = require("./models/userModel");
 const Expense = require("./models/expenseModel");
 const Order = require("./models/ordersModel");
 const ResetPassword = require("./models/resetPasswordModel");
+const Downloads = require("./models/downloadedReportsModel");
 
 User.hasMany(Expense);
 Expense.belongsTo(User);
 
-User.hasMany(Order);    
+User.hasMany(Order);
 Order.belongsTo(User);
 
 User.hasMany(ResetPassword);
 ResetPassword.belongsTo(User);
 
+User.hasMany(Downloads);
+Downloads.belongsTo(User);
+
 // Sync database and start server
-sequelize   
+sequelize
   .sync({ force: false })
   .then(() => {
     app.listen(process.env.PORT || 3005);

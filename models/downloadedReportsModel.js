@@ -1,12 +1,12 @@
-const Sequelize = require('sequelize')
-const sequelize = require('../utils/database')
+const Sequelize = require("sequelize");
+const sequelize = require("../util/database");
 
-const DownloadedReports = sequelize.define('downloadedReports_tb',{
-    fileUrl: {
-        type: Sequelize.STRING,
-        primaryKey: true,
-        allowNull: false
-      }
+const DownloadedReports = sequelize.define("downloadedReports", {
+  fileUrl: {
+    type: Sequelize.STRING,
+    primaryKey: true,
+    allowNull: false,
+  },
 });
 
 module.exports = DownloadedReports;
