@@ -15,6 +15,8 @@ const tfootMonthly = document.getElementById("tfootMonthlyId");
 
 const logoutBtn = document.getElementById("logoutBtn");
 
+const serverUrl = `http://${process.env.SERVER_IP}:3000`;
+
 // Function to format and display the username
 function formatAndDisplayUsername(fullName) {
   const firstName = fullName.split(" ")[0];
@@ -38,7 +40,7 @@ async function getDailyReport(e) {
 
     let totalAmount = 0;
     const res = await axios.post(
-      "http://localhost:3000/reports/dailyReports",
+      `${serverUrl}/reports/dailyReports`,
       { date: formattedDate },
       { headers: { Authorization: token } }
     );
@@ -152,7 +154,7 @@ async function getWeeklyReport(e) {
 
     let totalAmount = 0;
     const res = await axios.post(
-      "http://localhost:3000/reports/weeklyReports",
+      `${serverUrl}/reports/weeklyReports`,
       { startDate: formattedStartDate, endDate: formattedEndDate },
       { headers: { Authorization: token } }
     );
@@ -238,7 +240,7 @@ async function getMonthlyReport(e) {
 
     let totalAmount = 0;
     const res = await axios.post(
-      "http://localhost:3000/reports/monthlyReports",
+      `${serverUrl}/reports/monthlyReports`,
       { month: formattedMonth },
       { headers: { Authorization: token } }
     );

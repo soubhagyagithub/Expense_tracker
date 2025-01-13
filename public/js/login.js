@@ -10,29 +10,29 @@ const closeBtn = document.getElementById("closeBtn");
 
 signUp.addEventListener("click", () => {
   container.classList.add("active");
-  history.pushState(null, null, '/user/signUp');
+  history.pushState(null, null, "/user/signUp");
 });
 
 signIn.addEventListener("click", () => {
   container.classList.remove("active");
-  history.pushState(null, null, '/user/login');
+  history.pushState(null, null, "/user/login");
 });
 
 registerBtn.addEventListener("click", () => {
   container.style.display = "block";
   registerBtn.style.display = "none";
-  history.pushState(null, null, '/user/login');
+  history.pushState(null, null, "/user/login");
 });
 
 closeBtn.addEventListener("click", () => {
   container.style.display = "none";
   registerBtn.style.display = "block";
-  history.pushState(null, null, '/');
+  history.pushState(null, null, "/");
 });
 
+const serverUrl = `http://${process.env.SERVER_IP}:3000`;
 
-
-window.onload = function() {
+window.onload = function () {
   const url = window.location.pathname;
 
   if (url.endsWith("/signUp")) {
@@ -49,10 +49,10 @@ async function createUser(event) {
 
   const password = event.target.password.value;
   const confirmPassword = event.target.confirmPassword.value;
-  
+
   if (password.length < 6) {
     alert("Password must be at least 6 characters long.");
-    return
+    return;
   }
   if (password !== confirmPassword) {
     alert("Passwords do not match.");
@@ -66,7 +66,7 @@ async function createUser(event) {
   };
 
   await axios
-    .post("http://localhost:3000/user/signUp", signUpDetails)
+    .post(`${serverUrl}/user/signUp`, signUpDetails)
     .then((res) => {
       alert(res.data.message);
       window.location.href = "/user/login";
@@ -95,7 +95,7 @@ async function login() {
   };
 
   await axios
-    .post("http://localhost:3000/user/login", loginDetails)
+    .post(`${serverUrl}/user/login`, loginDetails)
     .then((result) => {
       alert(result.data.message);
       localStorage.setItem("token", result.data.token);
@@ -113,6 +113,8 @@ async function login() {
 }
 
 loginBtn.addEventListener("click", login);
-document.getElementById('forgotPasswordLink').addEventListener('click', function () {
-  window.location.href = '/password/forgotPasswordPage';
-});
+document
+  .getElementById("forgotPasswordLink")
+  .addEventListener("click", function () {
+    window.location.href = "/password/forgotPasswordPage";
+  });

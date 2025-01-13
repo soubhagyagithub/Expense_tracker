@@ -1,3 +1,5 @@
+const serverUrl = `http://${process.env.SERVER_IP}:3000`;
+
 window.addEventListener("DOMContentLoaded", async (event) => {
   try {
     const token = localStorage.getItem("token");
@@ -12,7 +14,8 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     updatePremiumUI();
 
     // Fetch expenses
-    const res = await axios.get("/expense/getExpense/", {
+
+    const res = await axios.get(`${serverUrl}/expense/getExpense/`, {
       headers: { Authorization: token },
     });
     pagination(res.data.totalExpenses, 10);
@@ -71,7 +74,7 @@ async function getExpenses(noOfRows) {
 async function checkPremiumStatus() {
   try {
     const token = localStorage.getItem("token");
-    const response = await axios.get("/user/checkPremium", {
+    const response = await axios.get(`${serverUrl}/user/checkPremium`, {
       headers: { Authorization: token },
     });
     const isPremium = response.data.isPremiumUser;
@@ -162,9 +165,12 @@ document.getElementById("buyPremiumBtn").addEventListener("click", buypremium);
 async function buypremium() {
   try {
     const token = localStorage.getItem("token");
-    const response = await axios.get("/purchase/premiumMembership", {
-      headers: { Authorization: token },
-    });
+    const response = await axios.get(
+      `${serverUrl}/purchase/premiumMembership`,
+      {
+        headers: { Authorization: token },
+      }
+    );
     console.log(response);
     const options = {
       key: response.data.key_id,
@@ -219,7 +225,7 @@ function unlockReportsAfterPremiumMember() {
 async function showLeaderboard() {
   try {
     const token = localStorage.getItem("token");
-    const rankers = await axios.get("/premium/getRankers", {
+    const rankers = await axios.get(`${serverUrl}/premium/getRankers`, {
       headers: { Authorization: token },
     });
     const container = document.querySelector(".leaderboardColumn");
@@ -290,7 +296,7 @@ async function addExpense() {
     const expenseCategory = document.getElementById("category").value;
 
     const result = await axios.post(
-      "/expense/addExpense",
+      `${serverUrl}/expense/addExpense`,
       {
         amount: expenseAmount,
         description: expenseDescription,
@@ -326,7 +332,7 @@ async function deleteExpense(id) {
   try {
     const token = localStorage.getItem("token");
     await axios
-      .delete(`/expense/deleteExpense/${id}`, {
+      .delete(`${serverUrl}/expense/deleteExpense/${id}`, {
         headers: { Authorization: token },
       })
       .then((result) => {
@@ -383,7 +389,7 @@ async function updateExpense(e) {
 
     await axios
       .put(
-        `/expense/editExpense/${expenseId}`,
+        `${serverUrl}/expense/editExpense/${expenseId}`,
         {
           amount: expenseAmount,
           description: expenseDescription,
@@ -479,9 +485,12 @@ async function downloadReport() {
 
   try {
     const token = localStorage.getItem("token");
-    const response = await axios.get(`/premium/downloadExpensesReport`, {
-      headers: { Authorization: token },
-    });
+    const response = await axios.get(
+      `${serverUrl}/premium/downloadExpensesReport`,
+      {
+        headers: { Authorization: token },
+      }
+    );
 
     const isPremiumUser = localStorage.getItem("isPremium") === "true";
     if (!isPremiumUser) {
@@ -533,9 +542,12 @@ async function fetchDownloadedReports(event) {
 
   try {
     const token = localStorage.getItem("token");
-    const prevDownloadsData = await axios.get(`/premium/showPrevDownloads`, {
-      headers: { Authorization: token },
-    });
+    const prevDownloadsData = await axios.get(
+      `${serverUrl}/premium/showPrevDownloads`,
+      {
+        headers: { Authorization: token },
+      }
+    );
     const isPremiumUser = localStorage.getItem("isPremium") === "true";
     if (!isPremiumUser) {
       alert("Buy Premium Subscription to access this feature!");
