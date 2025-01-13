@@ -4,7 +4,7 @@ const path = require("path");
 const fs = require("fs");
 const cors = require("cors");
 const dotenv = require("dotenv");
-const helmet = require("helmet");
+// const helmet = require("helmet");
 const morgan = require("morgan");
 
 dotenv.config();
@@ -20,8 +20,9 @@ app.use(cors());
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(helmet());
+
 app.use(morgan("combined", { stream: accessLogStream }));
+// app.use(helmet());
 
 // Routers
 const userRouter = require("./router/userRouter");
