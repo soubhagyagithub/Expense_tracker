@@ -1,3 +1,5 @@
+const serverUrl = `http://${process.env.SERVER_IP}:3000`;
+
 const signUp = document.getElementById("signUp");
 const signIn = document.getElementById("signIn");
 const container = document.getElementById("container");
@@ -29,8 +31,6 @@ closeBtn.addEventListener("click", () => {
   registerBtn.style.display = "block";
   history.pushState(null, null, "/");
 });
-
-const serverUrl = `http://${process.env.SERVER_IP}:3000`;
 
 window.onload = function () {
   const url = window.location.pathname;
