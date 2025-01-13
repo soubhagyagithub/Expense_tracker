@@ -15,7 +15,7 @@ const tfootMonthly = document.getElementById("tfootMonthlyId");
 
 const logoutBtn = document.getElementById("logoutBtn");
 
-const serverUrl = `http://${process.env.SERVER_IP}:3000`;
+const serverUrl =process.env.SERVER_URL;
 
 // Function to format and display the username
 function formatAndDisplayUsername(fullName) {

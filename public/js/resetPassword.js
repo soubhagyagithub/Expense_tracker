@@ -1,6 +1,6 @@
 const resetPasswordBtn = document.getElementById("resetPasswordBtn");
 
-const serverUrl = `http://${process.env.SERVER_IP}:3000`;
+const serverUrl = process.env.SERVER_URL;
 async function updatePassword() {
   try {
     const newPassword = document.getElementById("newPassword").value;

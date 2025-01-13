@@ -1,4 +1,4 @@
-const serverUrl = `http://${process.env.SERVER_IP}:3000`;
+const serverUrl = process.env.SERVER_URL;
 
 window.addEventListener("DOMContentLoaded", async (event) => {
   try {
