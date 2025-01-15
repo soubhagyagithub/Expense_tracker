@@ -1,4 +1,4 @@
-const serverUrl = process.env.SERVER_URL;
+const BACKEND_ADDRESS = "http://trackmoney.xyz";
 
 const signUp = document.getElementById("signUp");
 const signIn = document.getElementById("signIn");
@@ -66,7 +66,7 @@ async function createUser(event) {
   };
 
   await axios
-    .post(`${serverUrl}/user/signUp`, signUpDetails)
+    .post(`${BACKEND_ADDRESS}/user/signUp`, signUpDetails)
     .then((res) => {
       alert(res.data.message);
       window.location.href = "/user/login";
@@ -95,7 +95,7 @@ async function login() {
   };
 
   await axios
-    .post(`${serverUrl}/user/login`, loginDetails)
+    .post(`${BACKEND_ADDRESS}/user/login`, loginDetails)
     .then((result) => {
       alert(result.data.message);
       localStorage.setItem("token", result.data.token);

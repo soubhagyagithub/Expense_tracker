@@ -1,9 +1,10 @@
 const resetPasswordLinkBtn = document.getElementById("resetPasswordLinkBtn");
-const serverUrl = process.env.SERVER_URL;
+const BACKEND_ADDRESS = "http://trackmoney.xyz";
+
 async function sendMail() {
   try {
     const email = document.getElementById("email").value;
-    const res = await axios.post(`${serverUrl}/password/sendMail`, {
+    const res = await axios.post(`${BACKEND_ADDRESS}/password/sendMail`, {
       email: email,
     });
     alert(res.data.message);

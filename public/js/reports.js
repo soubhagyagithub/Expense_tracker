@@ -15,7 +15,7 @@ const tfootMonthly = document.getElementById("tfootMonthlyId");
 
 const logoutBtn = document.getElementById("logoutBtn");
 
-const serverUrl =process.env.SERVER_URL;
+const BACKEND_ADDRESS = "http://trackmoney.xyz";
 
 // Function to format and display the username
 function formatAndDisplayUsername(fullName) {
@@ -40,7 +40,7 @@ async function getDailyReport(e) {
 
     let totalAmount = 0;
     const res = await axios.post(
-      `${serverUrl}/reports/dailyReports`,
+      `${BACKEND_ADDRESS}/reports/dailyReports`,
       { date: formattedDate },
       { headers: { Authorization: token } }
     );
@@ -154,7 +154,7 @@ async function getWeeklyReport(e) {
 
     let totalAmount = 0;
     const res = await axios.post(
-      `${serverUrl}/reports/weeklyReports`,
+      `${BACKEND_ADDRESS}/reports/weeklyReports`,
       { startDate: formattedStartDate, endDate: formattedEndDate },
       { headers: { Authorization: token } }
     );
@@ -240,7 +240,7 @@ async function getMonthlyReport(e) {
 
     let totalAmount = 0;
     const res = await axios.post(
-      `${serverUrl}/reports/monthlyReports`,
+      `${BACKEND_ADDRESS}/reports/monthlyReports`,
       { month: formattedMonth },
       { headers: { Authorization: token } }
     );

@@ -1,10 +1,10 @@
 const resetPasswordBtn = document.getElementById("resetPasswordBtn");
 
-const serverUrl = process.env.SERVER_URL;
+const BACKEND_ADDRESS = "http://trackmoney.xyz";
 async function updatePassword() {
   try {
     const newPassword = document.getElementById("newPassword").value;
-    const res = await axios.post(`${serverUrl}/password/resetPassword`, {
+    const res = await axios.post(`${BACKEND_ADDRESS}/password/resetPassword`, {
       password: newPassword,
     });
     alert(res.data.message);

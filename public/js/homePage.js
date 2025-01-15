@@ -1,5 +1,4 @@
-const serverUrl = process.env.SERVER_URL;
-
+const BACKEND_ADDRESS = "http://trackmoney.xyz";
 window.addEventListener("DOMContentLoaded", async (event) => {
   try {
     const token = localStorage.getItem("token");
@@ -15,7 +14,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
 
     // Fetch expenses
 
-    const res = await axios.get(`${serverUrl}/expense/getExpense/`, {
+    const res = await axios.get(`${BACKEND_ADDRESS}/expense/getExpense/`, {
       headers: { Authorization: token },
     });
     pagination(res.data.totalExpenses, 10);
@@ -59,7 +58,7 @@ async function getExpenses(noOfRows) {
   try {
     const token = localStorage.getItem("token");
     return await axios
-      .get(`/expense/getExpense/?page=1&size=${noOfRows}`, {
+      .get(`${BACKEND_ADDRESS}/expense/getExpense/?page=1&size=${noOfRows}`, {
         headers: { Authorization: token },
       })
       .then((res) => {
@@ -74,7 +73,7 @@ async function getExpenses(noOfRows) {
 async function checkPremiumStatus() {
   try {
     const token = localStorage.getItem("token");
-    const response = await axios.get(`${serverUrl}/user/checkPremium`, {
+    const response = await axios.get(`${BACKEND_ADDRESS}/user/checkPremium`, {
       headers: { Authorization: token },
     });
     const isPremium = response.data.isPremiumUser;
@@ -138,9 +137,12 @@ async function pagination(totalExpenses, noOfRows) {
         const sizeOfPage = document.getElementById("sizeOfPage").value;
         const token = localStorage.getItem("token");
         await axios
-          .get(`/expense/getExpense/?page=${a.innerHTML}&size=${sizeOfPage}`, {
-            headers: { Authorization: token },
-          })
+          .get(
+            `${BACKEND_ADDRESS}/expense/getExpense/?page=${a.innerHTML}&size=${sizeOfPage}`,
+            {
+              headers: { Authorization: token },
+            }
+          )
           .then((res) => {
             arrayOfLists = res.data.expenses;
             document.querySelector(".expenseTableBody").innerHTML = "";
@@ -166,7 +168,7 @@ async function buypremium() {
   try {
     const token = localStorage.getItem("token");
     const response = await axios.get(
-      `${serverUrl}/purchase/premiumMembership`,
+      `${BACKEND_ADDRESS}/purchase/premiumMembership`,
       {
         headers: { Authorization: token },
       }
@@ -177,7 +179,7 @@ async function buypremium() {
       order_id: response.data.order.id,
       handler: async function (response) {
         await axios.post(
-          "/purchase/updateTransactionStatus",
+          `${BACKEND_ADDRESS}/purchase/updateTransactionStatus`,
           {
             order_id: options.order_id,
             payment_id: response.razorpay_payment_id,
@@ -197,7 +199,7 @@ async function buypremium() {
     razorpay.open();
     razorpay.on(`payment.failed`, async (response) => {
       await axios.post(
-        "/purchase/updateTransactionStatus",
+        `${BACKEND_ADDRESS}/purchase/updateTransactionStatus`,
         {
           order_id: options.order_id,
           payment_id: response.razorpay_payment_id,
@@ -225,7 +227,7 @@ function unlockReportsAfterPremiumMember() {
 async function showLeaderboard() {
   try {
     const token = localStorage.getItem("token");
-    const rankers = await axios.get(`${serverUrl}/premium/getRankers`, {
+    const rankers = await axios.get(`${BACKEND_ADDRESS}/premium/getRankers`, {
       headers: { Authorization: token },
     });
     const container = document.querySelector(".leaderboardColumn");
@@ -296,7 +298,7 @@ async function addExpense() {
     const expenseCategory = document.getElementById("category").value;
 
     const result = await axios.post(
-      `${serverUrl}/expense/addExpense`,
+      `${BACKEND_ADDRESS}/expense/addExpense`,
       {
         amount: expenseAmount,
         description: expenseDescription,
@@ -332,7 +334,7 @@ async function deleteExpense(id) {
   try {
     const token = localStorage.getItem("token");
     await axios
-      .delete(`${serverUrl}/expense/deleteExpense/${id}`, {
+      .delete(`${BACKEND_ADDRESS}/expense/deleteExpense/${id}`, {
         headers: { Authorization: token },
       })
       .then((result) => {
@@ -389,7 +391,7 @@ async function updateExpense(e) {
 
     await axios
       .put(
-        `${serverUrl}/expense/editExpense/${expenseId}`,
+        `${BACKEND_ADDRESS}/expense/editExpense/${expenseId}`,
         {
           amount: expenseAmount,
           description: expenseDescription,
@@ -486,7 +488,7 @@ async function downloadReport() {
   try {
     const token = localStorage.getItem("token");
     const response = await axios.get(
-      `${serverUrl}/premium/downloadExpensesReport`,
+      `${BACKEND_ADDRESS}/premium/downloadExpensesReport`,
       {
         headers: { Authorization: token },
       }
@@ -543,7 +545,7 @@ async function fetchDownloadedReports(event) {
   try {
     const token = localStorage.getItem("token");
     const prevDownloadsData = await axios.get(
-      `${serverUrl}/premium/showPrevDownloads`,
+      `${BACKEND_ADDRESS}/premium/showPrevDownloads`,
       {
         headers: { Authorization: token },
       }
