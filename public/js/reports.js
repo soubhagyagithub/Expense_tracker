@@ -15,7 +15,7 @@ const tfootMonthly = document.getElementById("tfootMonthlyId");
 
 const logoutBtn = document.getElementById("logoutBtn");
 
-const BACKEND_ADDRESS = "http://trackmoney.xyz";
+const BACKEND_ADDRESS = "https://trackmoney.xyz";
 
 // Function to format and display the username
 function formatAndDisplayUsername(fullName) {

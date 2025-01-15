@@ -1,6 +1,6 @@
 const resetPasswordBtn = document.getElementById("resetPasswordBtn");
 
-const BACKEND_ADDRESS = "http://trackmoney.xyz";
+const BACKEND_ADDRESS = "https://trackmoney.xyz";
 async function updatePassword() {
   try {
     const newPassword = document.getElementById("newPassword").value;

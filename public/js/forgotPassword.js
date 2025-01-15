@@ -1,5 +1,5 @@
 const resetPasswordLinkBtn = document.getElementById("resetPasswordLinkBtn");
-const BACKEND_ADDRESS = "http://trackmoney.xyz";
+const BACKEND_ADDRESS = "https://trackmoney.xyz";
 
 async function sendMail() {
   try {

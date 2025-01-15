@@ -1,4 +1,4 @@
-const BACKEND_ADDRESS = "http://trackmoney.xyz";
+const BACKEND_ADDRESS = "https://trackmoney.xyz";
 
 const signUp = document.getElementById("signUp");
 const signIn = document.getElementById("signIn");

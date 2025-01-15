@@ -1,4 +1,4 @@
-const BACKEND_ADDRESS = "http://trackmoney.xyz";
+const BACKEND_ADDRESS = "https://trackmoney.xyz";
 window.addEventListener("DOMContentLoaded", async (event) => {
   try {
     const token = localStorage.getItem("token");
