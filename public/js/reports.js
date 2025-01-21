@@ -129,14 +129,15 @@ async function getWeeklyReport(e) {
 
     // Get the first date of the year
     const firstDayOfYear = new Date(year, 0, 1); // January 1st of the year
-    const daysOffset = (weekNumber - 1) * 7; // Offset weeks (assuming week starts on Monday)
+    const daysOffset = (weekNumber - 1) * 7; // Offset weeks (week starts on Monday)
     const startDate = new Date(
       firstDayOfYear.setDate(firstDayOfYear.getDate() + daysOffset)
     );
 
-    // Calculate the last date of the week (7 days from the start)
+    // Calculate the last date of the week (7 days from the start, full day)
     const endDate = new Date(startDate);
     endDate.setDate(startDate.getDate() + 6); // Add 6 days for the week range
+    endDate.setHours(23, 59, 59, 999); // Ensure the entire last day is included
 
     // Format the dates as YYYY-MM-DD
     const formattedStartDate = `${startDate.getFullYear()}-${(
