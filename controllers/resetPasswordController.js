@@ -14,9 +14,9 @@ const hashPassword = async (password) => {
 // Serve forgot password page
 exports.forgotPasswordPage = async (req, res) => {
   try {
-    res.status(200).sendFile(
-      path.join(__dirname, "../public/views/forgotPassword.html")
-    );
+    res
+      .status(200)
+      .sendFile(path.join(__dirname, "../public/views/forgotPassword.html"));
   } catch (error) {
     console.error(error);
   }
@@ -42,7 +42,8 @@ exports.sendMail = async (req, res) => {
     });
 
     const client = Sib.ApiClient.instance;
-    client.authentications["api-key"].apiKey = process.env.RESET_PASSWORD_API_KEY;
+    client.authentications["api-key"].apiKey =
+      process.env.RESET_PASSWORD_API_KEY;
 
     const transEmailApi = new Sib.TransactionalEmailsApi();
     const sender = { email: "ssoubhagyaranjan98@gmail.com", name: "Soubhagya" };
@@ -55,7 +56,7 @@ exports.sendMail = async (req, res) => {
       textContent: "Link Below",
       htmlContent: `
         <h3>Hi! We received a password reset request. Here is your link:</h3>
-        <a href="http://localhost:3000/password/resetPasswordPage/{{params.requestId}}">Click Here</a>`,
+        <a href="https://trackmoney.xyz/password/resetPasswordPage/{{params.requestId}}">Click Here</a>`,
       params: { requestId },
     });
 
@@ -71,9 +72,9 @@ exports.sendMail = async (req, res) => {
 // Serve reset password page
 exports.resetPasswordPage = async (req, res) => {
   try {
-    res.status(200).sendFile(
-      path.join(__dirname, "../public/views/resetPassword.html")
-    );
+    res
+      .status(200)
+      .sendFile(path.join(__dirname, "../public/views/resetPassword.html"));
   } catch (error) {
     console.error(error);
   }
@@ -95,7 +96,10 @@ exports.updatePassword = async (req, res) => {
       });
     }
 
-    await ResetPassword.update({ isActive: false }, { where: { id: requestId } });
+    await ResetPassword.update(
+      { isActive: false },
+      { where: { id: requestId } }
+    );
     const newPassword = await hashPassword(password);
 
     await User.update(
