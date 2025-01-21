@@ -42,10 +42,14 @@ exports.weeklyReports = async (req, res, next) => {
       return res.status(400).send("Start and end dates are required");
     }
 
+    const startDateTime = new Date(startDate);
+    const endDateTime = new Date(endDate);
+    endDateTime.setHours(23, 59, 59, 999); // Ensure the entire last day is included
+
     const expenses = await Expense.findAll({
       where: {
         createdAt: {
-          [Op.between]: [new Date(startDate), new Date(endDate)],
+          [Op.between]: [startDateTime, endDateTime],
         },
         userId: req.user.id,
       },
